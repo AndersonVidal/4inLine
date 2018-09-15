@@ -3,54 +3,47 @@
 #include <ctype.h>
 
 // PROJECT LIBRARIES
+/* não alterei esta parte, mas subentenda a importação de tudo que for necessário */
 #include "menu.h"
 #include "createGame.h"
 #include "rules.h"
 #include "about.h"
 
-// FUNCTION DECLARATIONS
-void manageMenu();
-
-// COLORS DEFINITIONS
-#define NOR  "\x1B[0m"
-#define RED  "\x1B[31m"
-//#define GRE  "\x1B[32m"
-//#define YEL  "\x1B[33m"
-//#define BLU  "\x1B[34m"
-//#define MAG  "\x1B[35m"
-#define CYA  "\x1B[36m"
-#define WHI  "\x1B[37m"
 
 int main() {
 
-  printf(CYA "***************************\n");
-  printf(RED "        4 In A Line        \n");
-  printf(CYA "***************************\n" NOR);
+  /*O programa em si é um laço que é executado até o usuário pedir para sair, li que este for é a forma mais adequada de laço infinito no c .*/
+  for( ; ; ){
+    /*
+    esta parte do programa chama uma função que mostraria um menu para o usuário com quatro opções.
+    1. Iniciar Jogo.
+    2. Regras e dicas.
+    3. Sobre.
+    4. Sair.
 
-  printf(WHI "          Welcome!         \n\n" NOR);
-  
-  manageMenu();
+    e retornaria um inteiro correspondente à opção.
 
-  return 0;
-}
+    */
+    int option = showMenu();
 
-// FUNCTION DEFINITIONS
-void manageMenu() {
-  showMenu();
+    /* A próxima parte do programa é um switch que faz uma determinada ação dependendo da opção escolhida */
+    switch( option ){
+      case 1:
+      /* a primeira opção é a mais complexa, ela deve fazer essencialmente três coisas: o cadastro, o gameplay e o placar, discorrerei sobre ela em outro arquivo */
+        startGame();
+        break
+      case 2:
+      /* A segunda opção mostra as regras */
+        showRules();
+        break;
+      case 3:
+      /* terceira opção mostra nossas informações */
+        about();
+        break;
+      case 4:
+      /* a quarta opção é o return da função main, portanto encerra o programa */
+        return 0;
 
-  char userChoice = ' ';
-  while (userChoice != getExitOption()) {  
-    scanf("%c", &userChoice); 
-    userChoice = toupper(userChoice);
-
-    if (userChoice == getCreateGameOption()) {
-      createGame();
-    }
-    else if (userChoice == getRulesOption()) {
-      showRules();
-    }
-    else if (userChoice == getAboutOption()) {
-      showAboutMsg();
     }
   }
 }
