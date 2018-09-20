@@ -6,14 +6,21 @@
   2. pedir jogadas do jogador e da IA
   3. avaliar o resultado de cada jogada vendo se alguém ganhou
 */
-int exibirTabuleiro(){
+int gerenciarTabuleiro(){
     /*
     tabuleiro do jogo:
     0 - espaço vazio
     1 - jogador
     2 - IA
     */
-    int tabuleiro[7][6];
+    int tabuleiro[6][7] = {
+      {0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0}
+    };
 
     /*
      uma variável para armazenar o estado atual do tabuleiro:
@@ -61,4 +68,16 @@ int exibirTabuleiro(){
 
     }
 
+}
+
+void imprimirTabuleiro(int tabuleiro[6][7]) {
+  for (int i = 0; i < 6; i++) {
+    for (int j = 0; j < 7; j++) {
+      if (j == 0) {
+        printf("|");
+      }
+      printf(" %d |", tabuleiro[i][j]);
+    }
+    printf("\n");
+  }
 }
