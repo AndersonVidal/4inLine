@@ -4,7 +4,7 @@
 
 /*BIBLIOTECAS DO PROJETO*/
 #include "menu.h"
-#include "iniciarJogo.h"
+#include "iniciarjogo.h"
 #include "regras.h"
 #include "sobre.h"
 
