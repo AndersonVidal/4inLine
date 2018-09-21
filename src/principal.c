@@ -4,7 +4,7 @@
 
 /*BIBLIOTECAS DO PROJETO*/
 #include "menu.h"
-#include "iniciarjogo.h"
+#include "iniciarJogo.h"
 #include "regras.h"
 #include "sobre.h"
 
@@ -12,7 +12,7 @@ int main() {
 
   /*O laço que é executado até o usuário pedir para sair.*/
   for( ; ; ){
-    /* Esta parte do programa chama uma função que mostra um menu para o usuário 
+    /* Esta parte do programa chama uma função que mostra um menu para o usuário
     com quatro opções.
     1. Iniciar Jogo.
     2. Regras e dicas.
@@ -29,11 +29,11 @@ int main() {
         iniciarJogo();
         break;
       case 2:
-        /* A segunda opção mostra as regras */ 
+        /* A segunda opção mostra as regras */
         exibirRegras();
         break;
       case 3:
-        /* A terceira opção mostra nossas informações */ 
+        /* A terceira opção mostra nossas informações */
         exibirSobre();
         break;
       case 4:
