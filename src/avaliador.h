@@ -52,7 +52,7 @@ int horizontalLine(int *tabuleiro[numOfLines][numOfColums]){
 }
 
 int mainDiagonalLine(int *tabuleiro[numOfLines][numOfColums]){
-	
+
 }
 
 int avaliar(int *tabuleiro[numOfLines][numOfColums]){

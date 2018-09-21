@@ -1,49 +1,46 @@
-// C STANDARD LIBRARIES
+/*BIBLIOTECAS PADRÕES DE C*/
 #include <stdio.h>
 #include <ctype.h>
 
-// PROJECT LIBRARIES
-/* não alterei esta parte, mas subentenda a importação de tudo que for necessário */
+/*BIBLIOTECAS DO PROJETO*/
 #include "menu.h"
-#include "createGame.h"
-#include "rules.h"
-#include "about.h"
-
+#include "iniciarjogo.h"
+#include "regras.h"
+#include "sobre.h"
 
 int main() {
 
-  /*O programa em si é um laço que é executado até o usuário pedir para sair, li que este for é a forma mais adequada de laço infinito no c .*/
+  /*O laço que é executado até o usuário pedir para sair.*/
   for( ; ; ){
-    /*
-    esta parte do programa chama uma função que mostraria um menu para o usuário com quatro opções.
+    /* Esta parte do programa chama uma função que mostra um menu para o usuário 
+    com quatro opções.
     1. Iniciar Jogo.
     2. Regras e dicas.
     3. Sobre.
     4. Sair.
 
-    e retornaria um inteiro correspondente à opção.
-
-    */
-    int option = showMenu();
+    e retorna um inteiro correspondente à opção.*/
+    int opcao = exibirMenu();
 
     /* A próxima parte do programa é um switch que faz uma determinada ação dependendo da opção escolhida */
-    switch( option ){
+    switch (opcao) {
       case 1:
-      /* a primeira opção é a mais complexa, ela deve fazer essencialmente três coisas: o cadastro, o gameplay e o placar, discorrerei sobre ela em outro arquivo */
-        startGame();
-        break
+        /* A primeira opção inicia o jogo */
+        iniciarJogo();
+        break;
       case 2:
-      /* A segunda opção mostra as regras */
-        showRules();
+        /* A segunda opção mostra as regras */ 
+        exibirRegras();
         break;
       case 3:
-      /* terceira opção mostra nossas informações */
-        about();
+        /* A terceira opção mostra nossas informações */ 
+        exibirSobre();
         break;
       case 4:
-      /* a quarta opção é o return da função main, portanto encerra o programa */
+        /* A quarta opção é o return da função main, portanto encerra o programa */
         return 0;
-
+      default:
+        printf("OPÇÃO INVÁLIDA\n");
     }
   }
 }

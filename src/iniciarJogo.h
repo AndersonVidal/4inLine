@@ -1,6 +1,11 @@
 #include <stdio.h>
 
-void startGame(){
+/*BIBLIOTECAS DO PROJETO*/
+#include "tabuleiro.h"
+#include "placar.h"
+#include "avaliador.h"
+
+void iniciarJogo(){
   /*
   esta função serve para:
   1. estocar os valores do placar.
@@ -23,7 +28,7 @@ void startGame(){
     mais desta função no arquivo tabuleiro.c
     */
 
-    switch ( chamarTabuleiro() ) {
+    switch ( exibirTabuleiro() ) {
       case 0:
         derrotas++;
         break;
@@ -41,7 +46,7 @@ void startGame(){
     - 1 caso o usuário queira voltar para o menu principal, neste caso a própria função startGame encerrará e a execução voltaria para o arquivo principal
     mais da função chamarPlacar no arquivo placar.c
     */
-    if ( chamarPlacar(vitorias, derrotas, empates) == 1 ){
+    if ( exibirPlacar(vitorias, derrotas, empates) == 1 ){
       return;
     }
 
