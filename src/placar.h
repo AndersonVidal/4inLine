@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int chamarPlacar(int vitorias, int derrotas, int empates){
+int exibirPlacar(int vitorias, int derrotas, int empates){
   /*
   esta função deve exibir na tela o placar e duas opções:
   0 jogar novamente

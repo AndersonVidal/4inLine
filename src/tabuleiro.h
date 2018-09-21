@@ -6,14 +6,21 @@
   2. pedir jogadas do jogador e da IA
   3. avaliar o resultado de cada jogada vendo se alguém ganhou
 */
-int chamarTabuleiro(){
+int gerenciarTabuleiro(){
     /*
     tabuleiro do jogo:
     0 - espaço vazio
     1 - jogador
     2 - IA
     */
-    int tabuleiro[7][6];
+    int tabuleiro[6][7] = {
+      {0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0}
+    };
 
     /*
      uma variável para armazenar o estado atual do tabuleiro:
@@ -30,22 +37,30 @@ int chamarTabuleiro(){
       depois o tabuleiro é avaliado e o resultado é armazenado na variável resultadoAtual
       se o resultado for diferente de -1(jogo acabou) retorna o resultado.
       */
+
+      /*
       pedirJogada(tabuleiro);
       resultadoAtual = avaliar(tabuleiro);
       if(resultadoAtual != -1){
         return resultadoAtual;
       }
+      */
+
 
       /*
       o bloco abaixo chama a função pedirJogada recebe a jogada do IA e modifica o tabuleiro de acordo com a jogada,
       depois o tabuleiro é avaliado e o resultado é armazenado na variável resultadoAtual
       se o resultado for diferente de -1(jogo acabou) retorna o resultado.
       */
+
+      /*
       aiJogar(tabuleiro);
       resultadoAtual = avaliar(tabuleiro);
       if(resultadoAtual != -1){
         return resultadoAtual;
       }
+      */
+      
 
       /*
       caso o resultado de resultadoAtual seja -1 o laço principal roda novamente
@@ -53,6 +68,16 @@ int chamarTabuleiro(){
 
     }
 
+}
 
-
+void imprimirTabuleiro(int tabuleiro[6][7]) {
+  for (int i = 0; i < 6; i++) {
+    for (int j = 0; j < 7; j++) {
+      if (j == 0) {
+        printf("|");
+      }
+      printf(" %d |", tabuleiro[i][j]);
+    }
+    printf("\n");
+  }
 }
