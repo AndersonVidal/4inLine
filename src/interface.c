@@ -3,7 +3,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "interface.h";
+#include "interface.h"
+#include "./Menu/menu.h"
 
 char *cli_response(void){
     char *line = NULL;

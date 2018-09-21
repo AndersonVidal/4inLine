@@ -3,23 +3,29 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "menu.h";
+#include "menu.h"
 
+/*Not working: need fixed*/
 void showRules(){
-    FILE *rules;
-    rules = fopen("../TextArchives/Rules.txt", "w");
-    
-    char readRules;
-     
-    do {
-        readRules = getc(rules);
-        printf("%c", readRules);
-    } while (readRules != EOF);
+    char ch, t[200];
+    FILE *arq;
+
+    arq = fopen("/TextArchives/Rules.txt","r");
+
+    if(arq == NULL){
+        printf("Error: Is impossible read archive!\n");
+    }else{
+        while(fgets(t,sizeof(t),arq)!=NULL){
+            printf("%s",t);
+        }
+        fclose(arq);
+    }
 }
 
+/*Not working: need fixed*/
 void showAbout(){
     FILE *about;
-    about = fopen("../TextArchives/About.txt", "w");
+    about = fopen("../TextArchives/About.txt", "rt");
     
     char readAbout;
 
@@ -41,17 +47,17 @@ void showMenu(){
 int computeMenuLine(char *line){
     int res;
 
-    if(line == '1') res = 1;
-    else if (line == '2') res = 2;
-    else if (line == '3') res = 3;
-    else if (line == '4') res = 0;
+    if(*line == '1') res = 1;
+    else if (*line == '2') res = 2;
+    else if (*line == '3') res = 3;
+    else if (*line == '4') res = 0;
     else res = -1;
 
     return res; 
 }
 
 void executeStatusOperation(int status){
-    if (status == 1) startGameRotine();
+    if (status == 1) return;//startGameRotine();
     else if (status == 2) showRules();
     else if (status == 3) showAbout();
     else if (status == 0) printf("Obrigado por jogar 4inLine! <3 \n");
