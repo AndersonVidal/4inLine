@@ -3,10 +3,10 @@
 #include <ctype.h>
 
 /*BIBLIOTECAS DO PROJETO*/
-#include "menu.h"
+#include "./menu/menu.h"
 #include "iniciarJogo.h"
-#include "regras.h"
-#include "sobre.h"
+#include "./regras/regras.h"
+#include "./sobre/sobre.h"
 
 int main() {
 

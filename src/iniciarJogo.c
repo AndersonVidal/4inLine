@@ -2,8 +2,8 @@
 #include "iniciarJogo.h"
 
 /*BIBLIOTECAS DO PROJETO*/
-#include "tabuleiro.h"
-#include "placar.h"
+#include "./tabuleiro/tabuleiro.h"
+#include "./placar/placar.h"
 
 void iniciarJogo(){
   /*
