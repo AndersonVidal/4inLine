@@ -18,6 +18,8 @@ void cli_loop(void){
     char *line;
     int status;
 
+    showArchive('A');
+
     do {
         showMenu();
 

@@ -23,3 +23,5 @@ correspondete:
         -1      Chamada para commandExceptionResponse()
 */
 void executeStatusOperation(int status);
+
+void showArchive(char type);

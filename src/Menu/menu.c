@@ -5,38 +5,26 @@
 
 #include "menu.h"
 
-/*Not working: need fixed*/
-void showRules(){
-    char ch, t[200];
+void showArchive(char type){
+    char ch, t[1000];
     FILE *arq;
 
-    arq = fopen("/TextArchives/Rules.txt","r");
+    if (type == 'B') arq = fopen("./src/TextArchives/About.txt","r");
+    else if (type == 'R') arq = fopen("./src/TextArchives/Rules.txt","r");
+    else if (type == 'A') arq = fopen("./src/TextArchives/Apresentation.txt","r");
+    else if (type == 'E') arq = fopen("./src/TextArchives/Salute.txt","r");
 
-    if(arq == NULL){
-        printf("Error: Is impossible read archive!\n");
-    }else{
-        while(fgets(t,sizeof(t),arq)!=NULL){
-            printf("%s",t);
-        }
+    if(arq == NULL) printf("A unexpected error occurred!\n");
+    else {
+        while(fgets(t,sizeof(t),arq) != NULL) printf("%s",t);
         fclose(arq);
     }
-}
 
-/*Not working: need fixed*/
-void showAbout(){
-    FILE *about;
-    about = fopen("../TextArchives/About.txt", "rt");
-    
-    char readAbout;
-
-    do {
-        readAbout = getc(about);
-        printf("%c", readAbout);
-    } while (readAbout != EOF);
+    printf("\n");
 }
 
 void showMenu(){
-    printf("--------- 4 IN LINE ---------\n\n");
+    printf("\n\n");
     printf("[1]\tINICIAR JOGO\n");
     printf("[2]\tREGRAS E DICAS\n");
     printf("[3]\tSOBRE\n");
@@ -58,8 +46,8 @@ int computeMenuLine(char *line){
 
 void executeStatusOperation(int status){
     if (status == 1) return;//startGameRotine();
-    else if (status == 2) showRules();
-    else if (status == 3) showAbout();
-    else if (status == 0) printf("Obrigado por jogar 4inLine! <3 \n");
+    else if (status == 2) showArchive('R');
+    else if (status == 3) showArchive('B');
+    else if (status == 0) showArchive('E'); 
     else if (status == -1) printf("Comando inválido! Por favor, digite um comando válido.\n");
 }
