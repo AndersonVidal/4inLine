@@ -2,3 +2,5 @@
 #define INICIARJOGO_H
 
 void iniciarJogo();
+
+#endif

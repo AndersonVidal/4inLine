@@ -2,3 +2,5 @@
 #define TABULEIRO_H
 
 int gerenciarTabuleiro();
+
+#endif

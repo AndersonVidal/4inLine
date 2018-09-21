@@ -2,3 +2,5 @@
 #define AVALIADOR_H
 
 int avaliar();
+
+#endif

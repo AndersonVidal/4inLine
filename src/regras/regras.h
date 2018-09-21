@@ -2,3 +2,5 @@
 #define SOBRE_H
 
 void exibirRegras();
+
+#endif

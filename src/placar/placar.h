@@ -2,3 +2,5 @@
 #define PLACAR_H
 
 int exibirPlacar();
+
+#endif
