@@ -5,6 +5,7 @@
 
 char **tabuleiro;
 int colunas[LINES];
+char jogadores[2];
 
 void inicializarTabuleiro() {
     tabuleiro = (char**)malloc(LINES * sizeof(char*));
@@ -18,6 +19,11 @@ void inicializarTabuleiro() {
         }
     }
     memset(colunas,0,sizeof(colunas));
+}
+
+void inicializaJogadores(char jogador01, char jogador02) {
+    jogadores[0] = jogador01;
+    jogadores[1] = jogador02;
 }
 
 char **getTabuleiro() {
@@ -34,4 +40,14 @@ bool verificaCompleta() {
         }
     }
     return false;
+}
+
+void marcaJogada(int jogador, int coluna) {
+    if(colunas[coluna-1] == COLUMNS) {
+        return -1;
+    }
+    int line = LINES - colunas[coluna-1] - 1;
+    colunas[coluna-1]++;
+    tabuleiro[line][coluna-1] = jogadores[jogador - 1];
+    return line;
 }
