@@ -1,3 +1,6 @@
+#ifndef _H_MENU
+#define _H_MENU
+
 /*
 Exibe o menu do sistema
 */
@@ -36,3 +39,5 @@ As correspondecias existentes sao:
     'E'     "./src/TextArchives/Goodbye.txt"
 */
 void showArchive(char type);
+
+#endif
