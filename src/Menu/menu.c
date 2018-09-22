@@ -12,7 +12,7 @@ void showArchive(char type){
     if (type == 'B') arq = fopen("./src/TextArchives/About.txt","r");
     else if (type == 'R') arq = fopen("./src/TextArchives/Rules.txt","r");
     else if (type == 'A') arq = fopen("./src/TextArchives/Apresentation.txt","r");
-    else if (type == 'E') arq = fopen("./src/TextArchives/Salute.txt","r");
+    else if (type == 'E') arq = fopen("./src/TextArchives/Goodbye.txt","r");
 
     if(arq == NULL) printf("A unexpected error occurred!\n");
     else {
