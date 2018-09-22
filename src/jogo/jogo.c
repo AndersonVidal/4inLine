@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include<stdbool.h>
+
 #include "jogo.h"
 
 char **tabuleiro;
@@ -42,7 +43,7 @@ bool verificaCompleta() {
     return false;
 }
 
-void marcaJogada(int jogador, int coluna) {
+int marcaJogada(int jogador, int coluna) {
     if(colunas[coluna-1] == COLUMNS) {
         return -1;
     }
@@ -50,4 +51,83 @@ void marcaJogada(int jogador, int coluna) {
     colunas[coluna-1]++;
     tabuleiro[line][coluna-1] = jogadores[jogador - 1];
     return line;
+}
+
+bool checkHorizontal(int linha,int coluna) {
+    int cont = 1;
+    int idx = coluna-2;
+    while(idx >= 0 && tabuleiro[linha][idx]==tabuleiro[linha][coluna-1]) {
+        idx--;
+        cont++;
+    }
+    idx = coluna+1;
+    while(idx < COLUMNS && tabuleiro[linha][idx]==tabuleiro[linha][coluna-1]) {
+        idx++;
+        cont++;
+    }
+    if(cont >= 4) return true;
+    else return false;
+}
+
+bool checkVertical(int linha,int coluna) {
+    int cont = 1;
+    int idx = linha-1;
+    while(idx >= 0 && tabuleiro[idx][coluna-1]==tabuleiro[linha][coluna-1]) {
+        idx--;
+        cont++;
+    }
+    idx = linha+1;
+    while(idx < LINES && tabuleiro[idx][coluna-1]==tabuleiro[linha][coluna-1]) {
+        idx++;
+        cont++;
+    }
+    if(cont >= 4) return true;
+    else return false;
+}
+
+bool checkDiagonalPrincipal(int linha, int coluna) {
+    int cont = 1;
+    int idxLinha = linha-1;
+    int idxColuna = coluna-2;
+    while(idxLinha >= 0 && idxColuna > 0 && tabuleiro[idxLinha][idxColuna]==tabuleiro[linha][coluna-1]) {
+        idxLinha--;
+        idxColuna--;
+        cont++;
+    }
+    idxLinha = linha+1;
+    idxColuna = coluna;
+    while(idxLinha < LINES && idxColuna < COLUMNS && tabuleiro[idxLinha][idxColuna]==tabuleiro[linha][coluna-1]) {
+        idxLinha++;
+        idxColuna++;
+        cont++;
+    }
+    if(cont >= 4) return true;
+    else return false;
+}
+
+bool checkDiagonalSecundaria(int linha, int coluna) {
+    int cont = 1;
+    int idxLinha = linha-1;
+    int idxColuna = coluna;
+    while(idxLinha >= 0 && idxColuna < COLUMNS && tabuleiro[idxLinha][idxColuna]==tabuleiro[linha][coluna-1]) {
+        idxLinha--;
+        idxColuna++;
+        cont++;
+    }
+    idxLinha = linha+1;
+    idxColuna = coluna-2;
+    while(idxLinha < LINES && idxColuna > 0 && tabuleiro[idxLinha][idxColuna]==tabuleiro[linha][coluna-1]) {
+        idxLinha++;
+        idxColuna--;
+        cont++;
+    }
+    if(cont >= 4) return true;
+    else return false;
+}
+
+bool varificaGanhador(int linha, int coluna) {
+    return checkHorizontal(linha,coluna) || 
+		   checkVertical(linha,coluna) || 
+		   checkDiagonalPrincipal(linha,coluna) || 
+		   checkDiagonalSecundaria(linha,coluna);
 }

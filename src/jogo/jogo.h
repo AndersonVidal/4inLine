@@ -17,6 +17,8 @@ char **getTabuleiro();
 bool verificaCompleta();
 
 /* Metodo que marca no tabuleiro a jogada de um jogador */
-void marcaJogada(int jogador, int coluna);
+int marcaJogada(int jogador, int coluna);
+
+bool varificaGanhador(int linha, int coluna);
 
 #endif
