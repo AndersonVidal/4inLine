@@ -83,15 +83,11 @@ void chamarMenu() {
         break;
       case 4:
         /* A quarta opção é o return da função main, portanto encerra o programa */
-				showMessage('E')
+				showMessage('E');
 				return;
       default:
         printf("Que diabos você fez?\n");
 				/*Depois do merge com a experimentalFeature1, caso alguem consiga ativar a linha acima, vá ao cartório e mude seu nome para Chuck Norris.*/
     }
   }
-}
-
-int main(){
-	chamarMenu();
 }
