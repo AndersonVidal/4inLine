@@ -4,7 +4,7 @@
 
 /*BIBLIOTECAS DO PROJETO*/
 #include "menu.h"
-#include "iniciarJogo.h"
+#include "iniciarjogo.h"
 #include "regras.h"
 #include "sobre.h"
 
@@ -26,7 +26,7 @@ int main() {
     switch (opcao) {
       case 1:
         /* A primeira opção inicia o jogo */
-        exibirJogo();
+        iniciarJogo();
         break;
       case 2:
         /* A segunda opção mostra as regras */ 
