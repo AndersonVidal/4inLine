@@ -25,10 +25,11 @@ void iniciarJogo(){
     a parte abaixo chama a função chamarTabuleiro, esta função retorna um inteiro de acordo com o padrão:
     - 1 caso o usuário tenha vencido.
     - 0 caso o usuário tenha perdido.
+		- 2 em caso de empate.
     mais desta função no arquivo tabuleiro.c
     */
 
-    switch ( exibirTabuleiro() ) {
+    switch ( gerenciarTabuleiro() ) {
       case 0:
         derrotas++;
         break;
