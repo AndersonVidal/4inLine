@@ -1,12 +1,15 @@
+#define EMPTY 0
+#define PLAYER 1
+#define IA 2
 
 int numOfLines = 6;
 int numOfColums = 7;
 
-int addToLastFour(int lastFour[4], int item){
-	lastFour[0] = lastFour[1];
-	lastFour[1] = lastFour[2];
-	lastFour[2] = lastFour[3];
-	lastFour[3] = item;
+int addToLast(int *sequence[4], int item, int sequenceSize){
+	for (int i = 0; i < sequenceSize - 1; i++) {
+    sequence[i] = sequence[i+1];
+  }
+  sequence[sequenceSize - 1] = item;
 }
 
 int threeInLine(int lastFour[4]) {
@@ -36,41 +39,79 @@ int threeInLine(int lastFour[4]) {
 	}
 }
 
-int verticalLine(int board[numOfLines][numOfColums]){
-	int lastFour[4];
+bool isVerticalLine((int *board[numOfLines][numOfColums], int sequenceSize, int player){
+	int currentSequence[sequenceSize];
 	for(int j = 0; j < numOfColums; j++){
 		for(int i = numOfLines - 1; i >= 0; i--){
-			addToLastFour(lastFour, board[i][j]);
-      int sqThree = threeInLine(lastFour);
-			if (sqThree > 0) {
-				return sqThree;
+			addToLast(currentSequence, board[i][j], sequenceSize);
+      bool sqThree = xInLine(currentSequence, sequenceSize, player);
+			if (sqThree) {
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
-int horizontalLine(int board[numOfLines][numOfColums]){
-	int lastFour[4];
+bool isHorizontalLine(int *board[numOfLines][numOfColums], int sequenceSize, int player){
+	int currentSequence[sequenceSize];
 	for(int i = numOfLines - 1; i >= 0; i--){
 		for(int j = 0; j < numOfColums; j++){
-			addToLastFour(lastFour, board[i][j]);
-      int sqThree = threeInLine(lastFour);
-			if (sqThree > 0) {
-				return sqThree;
+			addToLast(currentSequence, board[i][j], sequenceSize);
+      bool sqThree = xInLine(currentSequence, sequenceSize, player);
+			if (sqThree) {
+				return true;
 			}
 		}
-	}
-	return 0;
+  }
+  return false
 }
 
-void manage(int board[numOfLines][numOfColums]) {
-  if (horizontalLine(board) == 2 || verticalLine(board) == 2) {
+bool isInSequence(int *board[numOfLines][numOfColums], int player, int sequenceSize) {
+  return horoizontalLine(bard, player) == sequenceSize || verticalLine(board, player) == sequenceSize;
+}
+
+void manage(int *board[numOfLines][numOfColums]) {
+  /* 1º caso
+   - Estado: IA com 3 marcadores em sequência
+   - Ação: IA completa a sequência formando 4 
+  */
+  if (isInSequence(board, IA, 3)) {
+    /* addPiece(int coord[2], int player); */
+  }
+  /* 2º caso
+   - Estado: Jogador com 3 marcadores em sequência
+   - Ação: IA interrompe a sequência do jogador 
+  */
+  else if (isInSequence(board, PLAYER, 3)) {
     /*addPiece();*/
   }
-  else if (horizontalLine(board) == 1 || verticalLine(board == 1)) {
-    /*blockSeq();*/
-  } else {
-    /*randomPlay();*/
+  /* 3º caso
+   - Estado: Jogador com 2 marcadores em sequência
+   - Ação: IA interrompe a sequência do jogador 
+  */
+  else if (isInSequence(board, PLAYER, 2)) {
+    /*addPiece();*/
+  }
+  /* 4º caso
+   - Estado: IA com 2 marcadores em sequência
+   - Ação: IA adiciona mais um marcador seguindo a sequência 
+  */
+  else if (isInSequence(board, IA, 2)) {
+    /*addPiece();*/
+  }
+  /* 4º caso
+   - Estado: IA com 1 marcador
+   - Ação: IA adiciona mais um marcador vizinho a este 
+  */
+  else if (isInSequence(board, IA, 1)) {
+    /*addPiece();*/
+  }
+  /* 6º caso
+   - Estado: As condições acima não foram atendidas
+   - Ação: IA adiciona marcardor em posição aleatória 
+  */
+  else {
+    /*addPieceRandom();*/
   }
 }
