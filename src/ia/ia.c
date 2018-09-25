@@ -3,12 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define EMPTY 0
-#define PLAYER 1
-#define IA 2
-
-int numOfLines = 6;
-int numOfColums = 7;
+#include "ia.h"
 
 int addToLast(int sequenceSize, int sequence[sequenceSize], int item) {
     for (int i = 0; i < sequenceSize - 1; i++) {
@@ -40,11 +35,11 @@ int xInLine(int sequenceSize, int sequence[sequenceSize], int player)
     return -1;
 }
 
-int verticalLine(int board[numOfLines][numOfColums], int player, int sequenceSize) {
+int verticalLine(int board[LINES][COLUMNS], int player, int sequenceSize) {
     int currentSequence[sequenceSize];
-    for (int j = 0; j < numOfColums; j++) {
+    for (int j = 0; j < COLUMNS; j++) {
         memset(currentSequence, 0, sizeof currentSequence);
-        for (int i = numOfLines - 1; i >= 0; i--) {
+        for (int i = LINES - 1; i >= 0; i--) {
             addToLast(sequenceSize, currentSequence, board[i][j]);
             int isInline = xInLine(sequenceSize, currentSequence, player);
             if (isInline != -1) {
@@ -55,11 +50,11 @@ int verticalLine(int board[numOfLines][numOfColums], int player, int sequenceSiz
     return -1;
 }
 
-int horizontalLine(int board[numOfLines][numOfColums], int player, int sequenceSize) {
+int horizontalLine(int board[LINES][COLUMNS], int player, int sequenceSize) {
     int currentSequence[sequenceSize];
-    for (int i = numOfLines - 1; i >= 0; i--) {
+    for (int i = LINES - 1; i >= 0; i--) {
         memset(currentSequence, 0, sizeof currentSequence);
-        for (int j = 0; j < numOfColums; j++) {
+        for (int j = 0; j < COLUMNS; j++) {
             addToLast(sequenceSize, currentSequence, board[i][j]);
             int isInline = xInLine(sequenceSize, currentSequence, player);
             if (isInline != -1) {
@@ -70,13 +65,13 @@ int horizontalLine(int board[numOfLines][numOfColums], int player, int sequenceS
     return -1;
 }
 
-int diagonalPrincipalLine(int board[numOfLines][numOfColums], int player, int sequenceSize) {
+int diagonalPrincipalLine(int board[LINES][COLUMNS], int player, int sequenceSize) {
     int currentSequence[sequenceSize];
     for (int l_top = 2; l_top >= 0; l_top--) {
-        for (int c_top = 0; c_top < numOfColums; c_top++) {
+        for (int c_top = 0; c_top < COLUMNS; c_top++) {
             int c = c_top, l = l_top;
             memset(currentSequence, 0, sizeof currentSequence);
-            while (c < numOfColums & l < numOfLines) {
+            while (c < COLUMNS & l < LINES) {
                 addToLast(sequenceSize, currentSequence, board[l][c]);
                 c++;
                 l++;
@@ -90,13 +85,13 @@ int diagonalPrincipalLine(int board[numOfLines][numOfColums], int player, int se
     return -1;
 }
 
-int diagonalSecundariaLine(int board[numOfLines][numOfColums], int player, int sequenceSize) {
+int diagonalSecundariaLine(int board[LINES][COLUMNS], int player, int sequenceSize) {
     int currentSequence[sequenceSize];
     for (int l_top = 2; l_top >= 0; l_top--) {
-        for (int c_top = numOfColums - 1; c_top >= 0; c_top--) {
+        for (int c_top = COLUMNS - 1; c_top >= 0; c_top--) {
             int c = c_top, l = l_top;
             memset(currentSequence, 0, sizeof currentSequence);
-            while (c >= 0 & l < numOfLines) {
+            while (c >= 0 & l < LINES) {
                 addToLast(sequenceSize, currentSequence, board[l][c]);
                 c--;
                 l++;
@@ -110,7 +105,7 @@ int diagonalSecundariaLine(int board[numOfLines][numOfColums], int player, int s
     return -1;
 }
 
-int getPosicao(int board[numOfLines][numOfColums], int player, int sequenceSize) {
+int getPosicao(int board[LINES][COLUMNS], int player, int sequenceSize) {
     int posHorizontal = horizontalLine(board, player, sequenceSize);
     int posVertical = verticalLine(board, player, sequenceSize);
     int posDiagonaPrincipal = diagonalPrincipalLine(board, player, sequenceSize);
@@ -138,7 +133,7 @@ int getPosicao(int board[numOfLines][numOfColums], int player, int sequenceSize)
     return possibilidades[rand() % counter];
 }
 
-int manage(int board[numOfLines][numOfColums]) {
+int manage(int board[LINES][COLUMNS]) {
     srand((unsigned)time(NULL));
 
     if (getPosicao(board, IA, 4) != -1) {
