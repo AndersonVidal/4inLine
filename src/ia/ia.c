@@ -112,7 +112,7 @@ int getPosicao(int board[LINES][COLUMNS], int player, int sequenceSize) {
     int posDiagonaSecundaria = diagonalSecundariaLine(board, player, sequenceSize);
 
     int possibilidades[4];
-    int counter = 0;
+    int counter = -1;
 
     if (posHorizontal != -1) {
         possibilidades[counter++] = posHorizontal;
@@ -126,11 +126,11 @@ int getPosicao(int board[LINES][COLUMNS], int player, int sequenceSize) {
     if (posDiagonaSecundaria != -1) {
         possibilidades[counter++] = posDiagonaSecundaria;
     }
-    if (counter == 0) {
+    if (counter == -1) {
         return -1;
     }
 
-    return possibilidades[rand() % counter];
+    return possibilidades[rand() % ++counter];
 }
 
 int manage(int board[LINES][COLUMNS]) {
@@ -165,3 +165,12 @@ int manage(int board[LINES][COLUMNS]) {
   return 0;
 }
  */
+
+/* 
+erro
+  {{0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0},
+  {0,0,0,0,0,0,0},
+  {0,2,0,0,0,0,0},
+  {0,1,0,0,0,0,0},
+  {1,1,0,0,0,2,0}}; */
