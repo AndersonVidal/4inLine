@@ -1,6 +1,6 @@
 #include <stdbool.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define EMPTY 0
@@ -10,10 +10,8 @@
 int numOfLines = 6;
 int numOfColums = 7;
 
-int addToLast(int sequenceSize, int sequence[sequenceSize], int item)
-{
-    for (int i = 0; i < sequenceSize - 1; i++)
-    {
+int addToLast(int sequenceSize, int sequence[sequenceSize], int item) {
+    for (int i = 0; i < sequenceSize - 1; i++) {
         sequence[i] = sequence[i + 1];
     }
     sequence[sequenceSize - 1] = item;
@@ -24,40 +22,32 @@ int xInLine(int sequenceSize, int sequence[sequenceSize], int player)
     int amountPlayer = 0;
     int amountEmpty = 0;
     int indexEmpty = -1;
-    
-    for (int i = 0; i < sequenceSize; i++)
-    {
-        if (sequence[i] == 0)
-        {
+
+    for (int i = 0; i < sequenceSize; i++) {
+        if (sequence[i] == 0) {
             amountEmpty++;
             indexEmpty = i;
         }
-        if (sequence[i] == player)
-        {
+        if (sequence[i] == player) {
             amountPlayer++;
         }
     }
 
-    if (amountPlayer == sequenceSize - 1 && amountEmpty == 1)
-    {
+    if (amountPlayer == sequenceSize - 1 && amountEmpty == 1) {
         return indexEmpty;
     }
 
     return -1;
 }
 
-int verticalLine(int board[numOfLines][numOfColums], int player, int sequenceSize)
-{
+int verticalLine(int board[numOfLines][numOfColums], int player, int sequenceSize) {
     int currentSequence[sequenceSize];
-    for (int j = 0; j < numOfColums; j++)
-    {
+    for (int j = 0; j < numOfColums; j++) {
         memset(currentSequence, 0, sizeof currentSequence);
-        for (int i = numOfLines - 1; i >= 0; i--)
-        {
+        for (int i = numOfLines - 1; i >= 0; i--) {
             addToLast(sequenceSize, currentSequence, board[i][j]);
             int isInline = xInLine(sequenceSize, currentSequence, player);
-            if (isInline != -1)
-            {
+            if (isInline != -1) {
                 return j;
             }
         }
@@ -65,18 +55,14 @@ int verticalLine(int board[numOfLines][numOfColums], int player, int sequenceSiz
     return -1;
 }
 
-int horizontalLine(int board[numOfLines][numOfColums], int player, int sequenceSize)
-{
+int horizontalLine(int board[numOfLines][numOfColums], int player, int sequenceSize) {
     int currentSequence[sequenceSize];
-    for (int i = numOfLines - 1; i >= 0; i--)
-    {
+    for (int i = numOfLines - 1; i >= 0; i--) {
         memset(currentSequence, 0, sizeof currentSequence);
-        for (int j = 0; j < numOfColums; j++)
-        {
+        for (int j = 0; j < numOfColums; j++) {
             addToLast(sequenceSize, currentSequence, board[i][j]);
             int isInline = xInLine(sequenceSize, currentSequence, player);
-            if (isInline != -1)
-            {
+            if (isInline != -1) {
                 return j - (sequenceSize - 1) + isInline;
             }
         }
@@ -84,24 +70,19 @@ int horizontalLine(int board[numOfLines][numOfColums], int player, int sequenceS
     return -1;
 }
 
-int diagonalPrincipalLine(int board[numOfLines][numOfColums], int player, int sequenceSize)
-{
+int diagonalPrincipalLine(int board[numOfLines][numOfColums], int player, int sequenceSize) {
     int currentSequence[sequenceSize];
-    for (int l_top = 2; l_top >= 0; l_top--)
-    {
-        for (int c_top = 0; c_top < numOfColums; c_top++)
-        {
+    for (int l_top = 2; l_top >= 0; l_top--) {
+        for (int c_top = 0; c_top < numOfColums; c_top++) {
             int c = c_top, l = l_top;
             memset(currentSequence, 0, sizeof currentSequence);
-            while (c < numOfColums & l < numOfLines)
-            {
+            while (c < numOfColums & l < numOfLines) {
                 addToLast(sequenceSize, currentSequence, board[l][c]);
                 c++;
                 l++;
             }
             int isInline = xInLine(sequenceSize, currentSequence, player);
-            if (isInline != -1)
-            {
+            if (isInline != -1) {
                 return c_top + isInline;
             }
         }
@@ -109,24 +90,19 @@ int diagonalPrincipalLine(int board[numOfLines][numOfColums], int player, int se
     return -1;
 }
 
-int diagonalSecundariaLine(int board[numOfLines][numOfColums], int player, int sequenceSize)
-{
+int diagonalSecundariaLine(int board[numOfLines][numOfColums], int player, int sequenceSize) {
     int currentSequence[sequenceSize];
-    for (int l_top = 2; l_top >= 0; l_top--)
-    {
-        for (int c_top = numOfColums - 1; c_top >= 0; c_top--)
-        {
+    for (int l_top = 2; l_top >= 0; l_top--) {
+        for (int c_top = numOfColums - 1; c_top >= 0; c_top--) {
             int c = c_top, l = l_top;
             memset(currentSequence, 0, sizeof currentSequence);
-            while (c >= 0 & l < numOfLines)
-            {
+            while (c >= 0 & l < numOfLines) {
                 addToLast(sequenceSize, currentSequence, board[l][c]);
                 c--;
                 l++;
             }
             int isInline = xInLine(sequenceSize, currentSequence, player);
-            if (isInline != -1)
-            {
+            if (isInline != -1) {
                 return c_top - isInline;
             }
         }
@@ -134,77 +110,48 @@ int diagonalSecundariaLine(int board[numOfLines][numOfColums], int player, int s
     return -1;
 }
 
-int getPosicao(int board[numOfLines][numOfColums], int player, int sequenceSize)
-{
+int getPosicao(int board[numOfLines][numOfColums], int player, int sequenceSize) {
     int posHorizontal = horizontalLine(board, player, sequenceSize);
     int posVertical = verticalLine(board, player, sequenceSize);
     int posDiagonaPrincipal = diagonalPrincipalLine(board, player, sequenceSize);
     int posDiagonaSecundaria = diagonalSecundariaLine(board, player, sequenceSize);
 
+    int possibilidades[4];
+    int counter = 0;
+
     if (posHorizontal != -1) {
-        return posHorizontal;
-    } else if (posVertical != -1) {
-        return posVertical;
-    } else if (posDiagonaPrincipal != -1) {
-        return posDiagonaPrincipal;
-    } else if (posDiagonaSecundaria != -1)
-    {
-        return posDiagonaSecundaria;
+        possibilidades[counter++] = posHorizontal;
     }
-    else
-    {
+    if (posVertical != -1) {
+        possibilidades[counter++] = posVertical;
+    }
+    if (posDiagonaPrincipal != -1) {
+        possibilidades[counter++] = posDiagonaPrincipal;
+    }
+    if (posDiagonaSecundaria != -1) {
+        possibilidades[counter++] = posDiagonaSecundaria;
+    }
+    if (counter == 0) {
         return -1;
     }
+
+    return possibilidades[rand() % counter];
 }
 
-int manage(int board[numOfLines][numOfColums])
-{
-    /* 1º caso
-   - Estado: IA com 3 marcadores em sequência
-   - Ação: IA completa a sequência formando 4 
-  */
-    if (getPosicao(board, IA, 4) != -1)
-    {
+int manage(int board[numOfLines][numOfColums]) {
+    srand((unsigned)time(NULL));
+
+    if (getPosicao(board, IA, 4) != -1) {
         return getPosicao(board, IA, 4);
-    }
-    /* 2º caso
-   - Estado: Jogador com 3 marcadores em sequência
-   - Ação: IA interrompe a sequência do jogador 
-  */
-    else if (getPosicao(board, PLAYER, 4) != -1)
-    {
+    } else if (getPosicao(board, PLAYER, 4) != -1) {
         return getPosicao(board, PLAYER, 4);
-    }
-    /* 3º caso
-   - Estado: Jogador com 2 marcadores em sequência
-   - Ação: IA interrompe a sequência do jogador 
-  */
-    else if (getPosicao(board, PLAYER, 3) != -1)
-    {
+    } else if (getPosicao(board, PLAYER, 3) != -1) {
         return getPosicao(board, PLAYER, 3);
-    }
-    /* 4º caso
-   - Estado: IA com 2 marcadores em sequência
-   - Ação: IA adiciona mais um marcador seguindo a sequência 
-  */
-    else if (getPosicao(board, IA, 3) != -1)
-    {
+    } else if (getPosicao(board, IA, 3) != -1) {
         return getPosicao(board, IA, 3);
-    }
-    /* 5º caso
-   - Estado: IA com 1 marcador
-   - Ação: IA adiciona mais um marcador vizinho a este 
-  */
-    else if (getPosicao(board, IA, 2) != -1)
-    {
+    } else if (getPosicao(board, IA, 2) != -1) {
         getPosicao(board, IA, 2);
-    }
-    /* 6º caso
-   - Estado: As condições acima não foram atendidas
-   - Ação: IA adiciona marcardor em posição aleatória 
-  */
-    else
-    {
+    } else {
         return rand() % 7;
     }
 }
