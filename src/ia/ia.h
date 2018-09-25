@@ -1,5 +1,5 @@
-#ifndef IA_H_INCLUDED
-#define IA_H_INCLUDED
+#ifndef _H_IA
+#define _H_IA
 
 #define LINHAS 6
 #define COLUNAS 7

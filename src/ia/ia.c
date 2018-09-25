@@ -125,20 +125,30 @@ int getPosicao(int tabuleiro[LINHAS][COLUNAS], int jogador, int tamanho) {
     int posDiagonaPrincipal = procurarNaDiagonalPrimaria(tabuleiro, jogador, tamanho);
     int posDiagonaSecundaria = procurarNaDiagonalSecundaria(tabuleiro, jogador, tamanho);
 
+    int possibilidades[4];
+    int counter = 0;
+
     if (posHorizontal != -1) {
-        return posHorizontal;
-    } else if (posVertical != -1) {
-        return posVertical;
-    } else if (posDiagonaPrincipal != -1) {
-        return posDiagonaPrincipal;
-    } else if (posDiagonaSecundaria != -1) {
-        return posDiagonaSecundaria;
-    } else {
+        possibilidades[counter++] = posHorizontal;
+    }
+    if (posVertical != -1) {
+        possibilidades[counter++] = posVertical;
+    }
+    if (posDiagonaPrincipal != -1) {
+        possibilidades[counter++] = posDiagonaPrincipal;
+    }
+    if (posDiagonaSecundaria != -1) {
+        possibilidades[counter++] = posDiagonaSecundaria;
+    }
+    if (counter == 0) {
         return -1;
     }
+
+    return possibilidades[rand() % counter];
 }
 
 int getPosicaoDaJogadaIA(int tabuleiro[LINHAS][COLUNAS]) {
+    srand((unsigned)time(NULL));
     /* 1º caso
         - Estado: IA com 3 marcadores em sequência
         - Ação: IA completa a sequência formando 4 
@@ -176,7 +186,7 @@ int getPosicaoDaJogadaIA(int tabuleiro[LINHAS][COLUNAS]) {
     }
     /* 6º caso
         - Estado: As condições acima não foram atendidas
-        - Ação: IA adiciona marcardor em posição aleatória 
+        - Ação: IA adiciona marcador em posição aleatória 
     */
     else {
         return rand() % 7;
