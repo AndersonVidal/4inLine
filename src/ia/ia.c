@@ -20,7 +20,10 @@ int xInLine(int sequenceSize, int sequence[sequenceSize], int player) {
     int amountPlayer = 0;
     int amountEmpty = 0;
     int indexEmpty = -1;
-    printf("%d - %d\n", sequence[0], sequence[1]);
+    for (int i = 0; i < sequenceSize-1; i++) {
+      printf("%d - ", sequence[i]);
+    }
+    printf("%d\n", sequence[sequenceSize-1]);
     for (int i = 0; i < sequenceSize; i++) {
         if (sequence[i] == 0) {
             amountEmpty++;
@@ -42,8 +45,10 @@ int verticalLine(int board[numOfLines][numOfColums], int player, int sequenceSiz
     printf("--- vertical %d %d ---\n\n", player, sequenceSize);
     int currentSequence[sequenceSize];
     for (int j = 0; j < numOfColums; j++) {
+        memset(currentSequence, 0, sizeof currentSequence);
         for (int i = numOfLines - 1; i >= 0; i--) {
             addToLast(sequenceSize, currentSequence, board[i][j]);
+            printf("i: %d, %d: j\n", i, j);
             int isInline = xInLine(sequenceSize, currentSequence, player);
             if (isInline != -1) {
                 return j;
@@ -57,6 +62,7 @@ int horizontalLine(int board[numOfLines][numOfColums], int player, int sequenceS
     printf("--- horizontal %d %d ---\n\n", player, sequenceSize);
     int currentSequence[sequenceSize];
     for (int i = numOfLines - 1; i >= 0; i--) {
+        memset(currentSequence, 0, sizeof currentSequence);
         for (int j = 0; j < numOfColums; j++) {
             addToLast(sequenceSize, currentSequence, board[i][j]);
             int isInline = xInLine(sequenceSize, currentSequence, player);
@@ -75,9 +81,10 @@ int getPosicao(int board[numOfLines][numOfColums], int player, int sequenceSize)
     int posDiagonaSecundaria = diagonalSecundariaLine(board, player, sequenceSize); */
 
     if (posHorizontal != -1) {
+        printf("coluna hori: %d", posHorizontal);
         return posHorizontal;
     } else if (posVertical != -1) {
-      printf("---vertical---\n\n");
+        printf("coluna vert: %d", posVertical);
         return posVertical;
     } /* else if (posDiagonaPrincipal != -1) {
         return posDiagonaPrincipal;
@@ -143,16 +150,17 @@ int manage(int board[numOfLines][numOfColums]) {
     }
 }
 
-int main() {
+/* int main() {
   int tabuleiro[6][7] = 
   {{0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0},
-  {0,0,0,0,1,0,0}};
+  {0,1,2,1,1,1,2}};
 
   printf("pos %d", manage(tabuleiro));
 
   return 0;
 }
+ */
