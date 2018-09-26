@@ -25,10 +25,10 @@ int gerenciarTabuleiro(){
 
     /*
      uma variável para armazenar o estado atual do tabuleiro:
-     -1 caso ninguém tenha ganhado
-      0 caso o usuário tenha perdido
-      1 caso o usuário tenha ganhado
-      2 caso tenha dado empate
+     0 caso ninguém tenha ganhado
+      1 caso o usuário tenha perdido
+      2 caso o usuário tenha ganhado
+      3 caso tenha dado empate
     */
     int resultadoAtual = -1;
 
