@@ -1,16 +1,14 @@
 #ifndef _H_IA
 #define _H_IA
 
-#define LINES 6
-#define COLUMNS 7
-#define EMPTY 0
-#define PLAYER 1
+#define LINHAS 6
+#define COLUNAS 7
+#define VAZIO 0
+#define JOGADOR 1
 #define IA 2
 
-
-/*
-    Metodo que retorna a coluna processada pela IA
-*/
-int manage(int board[LINES][COLUMNS]);
+/* Método que gerencia a busca por sequências válidas de peças da IA ou do oponente para  
+bloquear e retorna qual a posição onde a IA colocará sua próxima peça */
+int getPosicaoDaJogadaIA(int tabuleiro[LINHAS][COLUNAS]);
 
 #endif
