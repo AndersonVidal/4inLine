@@ -1,3 +1,5 @@
+#include<stdbool.h>
+
 #ifndef JOGO_H_INCLUDED
 #define JOGO_H_INCLUDED
 
@@ -19,6 +21,6 @@ bool verificaCompleta();
 /* Metodo que marca no tabuleiro a jogada de um jogador */
 int marcaJogada(int jogador, int coluna);
 
-bool varificaGanhador(int linha, int coluna);
+bool verificaGanhador(int linha, int coluna);
 
 #endif

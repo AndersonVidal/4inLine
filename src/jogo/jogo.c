@@ -35,12 +35,12 @@ bool verificaCompleta() {
     int i,j;
     for(i = 0; i < LINES; i++) {
         for(j = 0; j < COLUMNS; j++) {
-            if(tabuleiro[i][j] != '*') {
-                return true;
+            if(tabuleiro[i][j] == '*') {
+                return false;
             }
         }
     }
-    return false;
+    return true;
 }
 
 int marcaJogada(int jogador, int coluna) {
@@ -125,7 +125,7 @@ bool checkDiagonalSecundaria(int linha, int coluna) {
     else return false;
 }
 
-bool varificaGanhador(int linha, int coluna) {
+bool verificaGanhador(int linha, int coluna) {
     return checkHorizontal(linha,coluna) || 
 		   checkVertical(linha,coluna) || 
 		   checkDiagonalPrincipal(linha,coluna) || 
