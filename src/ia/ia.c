@@ -43,7 +43,7 @@ int procuraNaVertical(int tabuleiro[LINHAS][COLUNAS], int jogador, int tamanho) 
     int filaAtual[tamanho];
     for (int col = 0; col < COLUNAS; col++) {
         /* A função 'memset' adiciona '0' em todas as posições do array 'filaAtual' */
-        memset(filaAtual, 0, sizeof filaAtual);
+        memset(filaAtual, -1, sizeof filaAtual);
         for (int lin = LINHAS - 1; lin >= 0; lin--) {
             enfileirar(tamanho, filaAtual, tabuleiro[lin][col]);
             int posicao = getPosicaoVazia(tamanho, filaAtual, jogador);
@@ -61,7 +61,7 @@ caso contrário, retorna -1. */
 int procurarNaHorizontal(int tabuleiro[LINHAS][COLUNAS], int jogador, int tamanho) {
     int filaAtual[tamanho];
     for (int lin = LINHAS - 1; lin >= 0; lin--) {
-        memset(filaAtual, 0, sizeof filaAtual);
+        memset(filaAtual, -1, sizeof filaAtual);
         for (int col = 0; col < COLUNAS; col++) {
             enfileirar(tamanho, filaAtual, tabuleiro[lin][col]);
             int posicao = getPosicaoVazia(tamanho, filaAtual, jogador);
@@ -81,7 +81,7 @@ int procurarNaDiagonalPrimaria(int tabuleiro[LINHAS][COLUNAS], int jogador, int 
     for (int topo_linha = 2; topo_linha >= 0; topo_linha--) {
         for (int topo_coluna = 0; topo_coluna < COLUNAS; topo_coluna++) {
             int col = topo_coluna, lin = topo_linha;
-            memset(filaAtual, 0, sizeof filaAtual);
+            memset(filaAtual, -1, sizeof filaAtual);
             while (col < COLUNAS & lin < LINHAS) {
                 enfileirar(tamanho, filaAtual, tabuleiro[lin][col]);
                 col++;
@@ -104,7 +104,7 @@ int procurarNaDiagonalSecundaria(int tabuleiro[LINHAS][COLUNAS], int jogador, in
     for (int topo_linha = 2; topo_linha >= 0; topo_linha--) {
         for (int topo_coluna = COLUNAS - 1; topo_coluna >= 0; topo_coluna--) {
             int col = topo_coluna, lin = topo_linha;
-            memset(filaAtual, 0, sizeof filaAtual);
+            memset(filaAtual, -1, sizeof filaAtual);
             while (col >= 0 & lin < LINHAS) {
                 enfileirar(tamanho, filaAtual, tabuleiro[lin][col]);
                 col--;
@@ -129,16 +129,16 @@ int getPosicao(int tabuleiro[LINHAS][COLUNAS], int jogador, int tamanho) {
     int counter = -1;
 
     if (posHorizontal != -1) {
-        possibilidades[counter++] = posHorizontal;
+        possibilidades[++counter] = posHorizontal;
     }
     if (posVertical != -1) {
-        possibilidades[counter++] = posVertical;
+        possibilidades[++counter] = posVertical;
     }
     if (posDiagonaPrincipal != -1) {
-        possibilidades[counter++] = posDiagonaPrincipal;
+        possibilidades[++counter] = posDiagonaPrincipal;
     }
     if (posDiagonaSecundaria != -1) {
-        possibilidades[counter++] = posDiagonaSecundaria;
+        possibilidades[++counter] = posDiagonaSecundaria;
     }
     if (counter == -1) {
         return -1;
@@ -192,28 +192,3 @@ int getPosicaoDaJogadaIA(int tabuleiro[LINHAS][COLUNAS]) {
         return rand() % 7;
     }
 }
-
-/* int main() {
-  int tabuleiro[6][7] = 
-  {{0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0},
-  {0,1,2,1,1,1,2}};
-
-  printf("pos %d", manage(tabuleiro));
-
-  return 0;
-}
- */
-
-/* 
-erro
-  {{0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0},
-  {0,0,0,0,0,0,0},
-  {0,2,0,0,0,0,0},
-  {0,1,0,0,0,0,0},
-  {1,1,0,0,0,2,0}}; */
-
