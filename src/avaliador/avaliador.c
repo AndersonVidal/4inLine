@@ -187,79 +187,79 @@ int avaliar(int tabuleiro[numOfLines][numOfColums]){
 
 
 int main(){
-	int tabuleiro1[6][7] = {
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0}
-	};
-
-	int tabuleiro2[6][7] = {
-		{1, 0, 0, 0, 0, 0, 0},
-		{1, 0, 0, 0, 0, 0, 0},
-		{1, 0, 0, 0, 0, 0, 0},
-		{1, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0}
-	};
-
-	int tabuleiro3[6][7] = {
-		{1, 1, 1, 1, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0}
-	};
-
-	int tabuleiro4[6][7] = {
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 1, 0, 0, 0, 0, 0},
-		{0, 0, 1, 0, 0, 0, 0},
-		{0, 0, 0, 1, 0, 0, 0},
-		{0, 0, 0, 0, 1, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0}
-	};
-
-	int tabuleiro5[6][7] = {
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 1, 0},
-		{0, 0, 0, 0, 1, 0, 0},
-		{0, 0, 0, 1, 0, 0, 0},
-		{0, 0, 1, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0}
-	};
-
-	int tabuleiro6[6][7] = {
-		{0, 2, 0, 0, 0, 0, 0},
-		{0, 0, 2, 1, 0, 0, 0},
-		{0, 1, 0, 1, 1, 0, 0},
-		{0, 0, 1, 0, 2, 1, 0},
-		{0, 0, 0, 1, 0, 0, 0},
-		{0, 0, 0, 0, 1, 0, 0}
-	};
-
-	int tabuleiro7[6][7] = {
-		{1, 2, 1, 2, 1, 2, 1},
-		{2, 1, 2, 1, 2, 1, 2},
-		{1, 2, 1, 2, 1, 2, 1},
-		{1, 2, 1, 2, 1, 2, 1},
-		{2, 2, 2, 1, 2, 2, 2},
-		{1, 1, 1, 2, 1, 1, 1}
-	};
-
-
-	printf("quem ganhou no tabuleiro1: %d\n", avaliar(tabuleiro1));
-	printf("quem ganhou no tabuleiro2: %d\n", avaliar(tabuleiro2));
-	printf("quem ganhou no tabuleiro3: %d\n", avaliar(tabuleiro3));
-	printf("quem ganhou no tabuleiro4: %d\n", avaliar(tabuleiro4));
-	printf("quem ganhou no tabuleiro5: %d\n", avaliar(tabuleiro5));
-	printf("quem ganhou no tabuleiro7: %d\n", avaliar(tabuleiro7));
-	printf("tabuleiro 4 esta: %d\n", mainDiagonalLine(tabuleiro4));
-	printf("tabuleiro 6 esta: %d\n", mainDiagonalLine(tabuleiro6));
-	printf("tabuleiro 5 esta: %d\n", secondDiagonalLine(tabuleiro5));
+	// int tabuleiro1[6][7] = {
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0}
+	// };
+	//
+	// int tabuleiro2[6][7] = {
+	// 	{1, 0, 0, 0, 0, 0, 0},
+	// 	{1, 0, 0, 0, 0, 0, 0},
+	// 	{1, 0, 0, 0, 0, 0, 0},
+	// 	{1, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0}
+	// };
+	//
+	// int tabuleiro3[6][7] = {
+	// 	{1, 1, 1, 1, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0}
+	// };
+	//
+	// int tabuleiro4[6][7] = {
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 1, 0, 0, 0, 0, 0},
+	// 	{0, 0, 1, 0, 0, 0, 0},
+	// 	{0, 0, 0, 1, 0, 0, 0},
+	// 	{0, 0, 0, 0, 1, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0}
+	// };
+	//
+	// int tabuleiro5[6][7] = {
+	// 	{0, 0, 0, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 1, 0},
+	// 	{0, 0, 0, 0, 1, 0, 0},
+	// 	{0, 0, 0, 1, 0, 0, 0},
+	// 	{0, 0, 1, 0, 0, 0, 0},
+	// 	{0, 0, 0, 0, 0, 0, 0}
+	// };
+	//
+	// int tabuleiro6[6][7] = {
+	// 	{0, 2, 0, 0, 0, 0, 0},
+	// 	{0, 0, 2, 1, 0, 0, 0},
+	// 	{0, 1, 0, 1, 1, 0, 0},
+	// 	{0, 0, 1, 0, 2, 1, 0},
+	// 	{0, 0, 0, 1, 0, 0, 0},
+	// 	{0, 0, 0, 0, 1, 0, 0}
+	// };
+	//
+	// int tabuleiro7[6][7] = {
+	// 	{1, 2, 1, 2, 1, 2, 1},
+	// 	{2, 1, 2, 1, 2, 1, 2},
+	// 	{1, 2, 1, 2, 1, 2, 1},
+	// 	{1, 2, 1, 2, 1, 2, 1},
+	// 	{2, 2, 2, 1, 2, 2, 2},
+	// 	{1, 1, 1, 2, 1, 1, 1}
+	// };
+	//
+	//
+	// printf("quem ganhou no tabuleiro1: %d\n", avaliar(tabuleiro1));
+	// printf("quem ganhou no tabuleiro2: %d\n", avaliar(tabuleiro2));
+	// printf("quem ganhou no tabuleiro3: %d\n", avaliar(tabuleiro3));
+	// printf("quem ganhou no tabuleiro4: %d\n", avaliar(tabuleiro4));
+	// printf("quem ganhou no tabuleiro5: %d\n", avaliar(tabuleiro5));
+	// printf("quem ganhou no tabuleiro7: %d\n", avaliar(tabuleiro7));
+	// printf("tabuleiro 4 esta: %d\n", mainDiagonalLine(tabuleiro4));
+	// printf("tabuleiro 6 esta: %d\n", mainDiagonalLine(tabuleiro6));
+	// printf("tabuleiro 5 esta: %d\n", secondDiagonalLine(tabuleiro5));
 }
 /*
 0 0 0 0 0 0 0
