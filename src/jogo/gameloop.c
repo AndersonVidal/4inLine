@@ -6,6 +6,7 @@
 #include "../render/render.h"
 #include "../ia/ia.h"
 
+
 int lerColunaJogador(){
     int coluna;
     char *line = NULL;
@@ -55,7 +56,6 @@ int gameloop(){
     inicializaJogadores('X','O');
 
     while (status) {
-        //exibirPlacar(jogador, ia);
         exibirTabuleiro(getTabuleiro());
         coluna = lerColunaJogador();
         linha = marcaJogada(1,coluna);
@@ -67,11 +67,9 @@ int gameloop(){
             
         } else if(verificaCompleta()) status = 0;
         else {
-            //exibirPlacar(jogador, ia);
-            exibirTabuleiro(getTabuleiro());
             coluna = getPosicaoDaJogadaIA(getTabuleiro());
-            printf("A IA JOGOU: %d\n", coluna);
             linha = marcaJogada(2,coluna);
+            printf("\nO PC jogou na posição %d\n", coluna);
             
             if(verificaGanhador(linha,coluna)){
                 ganhador = 2;
@@ -79,8 +77,6 @@ int gameloop(){
                 status = 0;
             }
         }
-        //exibirPlacar(jogador, ia);
-        exibirTabuleiro(getTabuleiro());
     }
 
     return ganhador;

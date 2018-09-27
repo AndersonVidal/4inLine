@@ -144,21 +144,12 @@ int getPosicao(char **tabuleiro, int jogador, int tamanho) {
 }
 
 int getPosicaoDaJogadaIA(char **tabuleiro) {
-    for (int i = 0; i < 6; i++) {
-        printf("\n");
-        for (int j = 0; j < 7; j++) {
-            printf("%d ", tabuleiro[i][j]);
-        }
-    }
-    printf("\n\n");
-
     srand((unsigned)time(NULL));
     /* 1º caso
         - Estado: IA com 3 marcadores em sequência
         - Ação: IA completa a sequência formando 4 
     */
     if (getPosicao(tabuleiro, IA, 4) != -1) {
-        printf("-- IA 4 \n");
         return getPosicao(tabuleiro, IA, 4);
     }
     /* 2º caso
@@ -166,7 +157,6 @@ int getPosicaoDaJogadaIA(char **tabuleiro) {
         - Ação: IA interrompe a sequência do jogador 
     */
     else if (getPosicao(tabuleiro, JOGADOR, 4) != -1) {
-        printf("-- PL 4 \n");
         return getPosicao(tabuleiro, JOGADOR, 4);
     }
     /* 3º caso
@@ -174,7 +164,6 @@ int getPosicaoDaJogadaIA(char **tabuleiro) {
         - Ação: IA interrompe a sequência do jogador 
     */
     else if (getPosicao(tabuleiro, JOGADOR, 3) != -1) {
-        printf("-- PL 3 \n");
         return getPosicao(tabuleiro, JOGADOR, 3);
     }
     /* 4º caso
@@ -182,7 +171,6 @@ int getPosicaoDaJogadaIA(char **tabuleiro) {
         - Ação: IA adiciona mais um marcador seguindo a sequência 
     */
     else if (getPosicao(tabuleiro, IA, 3) != -1) {
-        printf("-- IA 3 \n");
         return getPosicao(tabuleiro, IA, 3);
     }
     /* 5º caso
@@ -190,7 +178,6 @@ int getPosicaoDaJogadaIA(char **tabuleiro) {
         - Ação: IA adiciona mais um marcador vizinho a este 
     */
     else if (getPosicao(tabuleiro, IA, 2) != -1) {
-        printf("-- IA 2 \n");
         getPosicao(tabuleiro, IA, 2);
     }
     /* 6º caso
@@ -198,7 +185,6 @@ int getPosicaoDaJogadaIA(char **tabuleiro) {
         - Ação: IA adiciona marcador em posição aleatória 
     */
     else {
-        printf("-- RANDOM \n");
         return rand() % 7;
     }
 }
