@@ -7,9 +7,7 @@
 
 /* Esse método adiciona itens do tabuleiro em uma fila de tamanho pré definido. */
 void enfileirar(int tamanho, int fila[tamanho], int item) {
-    for (int i = 0; i < tamanho - 1; i++) {
-        fila[i] = fila[i + 1];
-    }
+    for (int i = 0; i < tamanho - 1; i++) fila[i] = fila[i + 1];
     fila[tamanho - 1] = item;
 }
 
@@ -26,13 +24,10 @@ int getPosicaoVazia(int tamanho, int fila[tamanho], int jogador) {
             qtdVazio++;
             posicaoVazia = i;
         }
-        if (fila[i] == jogador) {
-            qtdJogador++;
-        }
+        
+        if (fila[i] == jogador) qtdJogador++;
     }
-    if (qtdJogador == tamanho - 1 && qtdVazio == 1) {
-        return posicaoVazia;
-    }
+    if (qtdJogador == tamanho - 1 && qtdVazio == 1) return posicaoVazia;
     return -1;
 }
 
@@ -42,14 +37,12 @@ caso contrário, retorna -1. */
 int procuraNaVertical(int tabuleiro[LINHAS][COLUNAS], int jogador, int tamanho) {
     int filaAtual[tamanho];
     for (int col = 0; col < COLUNAS; col++) {
-        /* A função 'memset' adiciona '0' em todas as posições do array 'filaAtual' */
         memset(filaAtual, -1, sizeof filaAtual);
+        
         for (int lin = LINHAS - 1; lin >= 0; lin--) {
             enfileirar(tamanho, filaAtual, tabuleiro[lin][col]);
             int posicao = getPosicaoVazia(tamanho, filaAtual, jogador);
-            if (posicao!= -1) {
-                return col;
-            }
+            if (posicao!= -1) return col;
         }
     }
     return -1;
@@ -62,12 +55,11 @@ int procurarNaHorizontal(int tabuleiro[LINHAS][COLUNAS], int jogador, int tamanh
     int filaAtual[tamanho];
     for (int lin = LINHAS - 1; lin >= 0; lin--) {
         memset(filaAtual, -1, sizeof filaAtual);
+        
         for (int col = 0; col < COLUNAS; col++) {
             enfileirar(tamanho, filaAtual, tabuleiro[lin][col]);
             int posicao = getPosicaoVazia(tamanho, filaAtual, jogador);
-            if (posicao != -1) {
-                return col - (tamanho - 1) + posicao;
-            }
+            if (posicao != -1) return col - (tamanho - 1) + posicao;
         }
     }
     return -1;
@@ -82,15 +74,15 @@ int procurarNaDiagonalPrimaria(int tabuleiro[LINHAS][COLUNAS], int jogador, int 
         for (int topo_coluna = 0; topo_coluna < COLUNAS; topo_coluna++) {
             int col = topo_coluna, lin = topo_linha;
             memset(filaAtual, -1, sizeof filaAtual);
+            
             while (col < COLUNAS & lin < LINHAS) {
                 enfileirar(tamanho, filaAtual, tabuleiro[lin][col]);
                 col++;
                 lin++;
             }
+
             int posicao = getPosicaoVazia(tamanho, filaAtual, jogador);
-            if (posicao != -1) {
-                return topo_coluna + posicao;
-            }
+            if (posicao != -1) return topo_coluna + posicao;
         }
     }
     return -1;
@@ -101,19 +93,20 @@ de N - 1 peças do jogador Y. Se for encontrada uma sequência, retorna a posiç
 caso contrário, retorna -1. */
 int procurarNaDiagonalSecundaria(int tabuleiro[LINHAS][COLUNAS], int jogador, int tamanho) {
     int filaAtual[tamanho];
+
     for (int topo_linha = 2; topo_linha >= 0; topo_linha--) {
         for (int topo_coluna = COLUNAS - 1; topo_coluna >= 0; topo_coluna--) {
             int col = topo_coluna, lin = topo_linha;
             memset(filaAtual, -1, sizeof filaAtual);
+
             while (col >= 0 & lin < LINHAS) {
                 enfileirar(tamanho, filaAtual, tabuleiro[lin][col]);
                 col--;
                 lin++;
             }
+
             int posicao = getPosicaoVazia(tamanho, filaAtual, jogador);
-            if (posicao != -1) {
-                return topo_coluna - posicao;
-            }
+            if (posicao != -1) return topo_coluna - posicao;
         }
     }
     return -1;
@@ -128,21 +121,13 @@ int getPosicao(int tabuleiro[LINHAS][COLUNAS], int jogador, int tamanho) {
     int possibilidades[4];
     int counter = -1;
 
-    if (posHorizontal != -1) {
-        possibilidades[++counter] = posHorizontal;
-    }
-    if (posVertical != -1) {
-        possibilidades[++counter] = posVertical;
-    }
-    if (posDiagonaPrincipal != -1) {
-        possibilidades[++counter] = posDiagonaPrincipal;
-    }
-    if (posDiagonaSecundaria != -1) {
-        possibilidades[++counter] = posDiagonaSecundaria;
-    }
-    if (counter == -1) {
-        return -1;
-    }
+    if (posHorizontal != -1) possibilidades[++counter] = posHorizontal;
+    if (posVertical != -1) possibilidades[++counter] = posVertical;
+
+    if (posDiagonaPrincipal != -1) possibilidades[++counter] = posDiagonaPrincipal;
+    if (posDiagonaSecundaria != -1) possibilidades[++counter] = posDiagonaSecundaria;
+
+    if (counter == -1) return -1;
 
     return possibilidades[rand() % ++counter];
 }
@@ -153,42 +138,30 @@ int getPosicaoDaJogadaIA(int tabuleiro[LINHAS][COLUNAS]) {
         - Estado: IA com 3 marcadores em sequência
         - Ação: IA completa a sequência formando 4 
     */
-    if (getPosicao(tabuleiro, IA, 4) != -1) {
-        return getPosicao(tabuleiro, IA, 4);
-    }
+    if (getPosicao(tabuleiro, IA, 4) != -1) return getPosicao(tabuleiro, IA, 4);
     /* 2º caso
         - Estado: Jogador com 3 marcadores em sequência
         - Ação: IA interrompe a sequência do jogador 
     */
-    else if (getPosicao(tabuleiro, JOGADOR, 4) != -1) {
-        return getPosicao(tabuleiro, JOGADOR, 4);
-    }
+    else if (getPosicao(tabuleiro, JOGADOR, 4) != -1) return getPosicao(tabuleiro, JOGADOR, 4);
     /* 3º caso
         - Estado: Jogador com 2 marcadores em sequência
         - Ação: IA interrompe a sequência do jogador 
     */
-    else if (getPosicao(tabuleiro, JOGADOR, 3) != -1) {
-        return getPosicao(tabuleiro, JOGADOR, 3);
-    }
+    else if (getPosicao(tabuleiro, JOGADOR, 3) != -1) return getPosicao(tabuleiro, JOGADOR, 3);
     /* 4º caso
         - Estado: IA com 2 marcadores em sequência
         - Ação: IA adiciona mais um marcador seguindo a sequência 
     */
-    else if (getPosicao(tabuleiro, IA, 3) != -1) {
-        return getPosicao(tabuleiro, IA, 3);
-    }
+    else if (getPosicao(tabuleiro, IA, 3) != -1) return getPosicao(tabuleiro, IA, 3);
     /* 5º caso
         - Estado: IA com 1 marcador
         - Ação: IA adiciona mais um marcador vizinho a este 
     */
-    else if (getPosicao(tabuleiro, IA, 2) != -1) {
-        getPosicao(tabuleiro, IA, 2);
-    }
+    else if (getPosicao(tabuleiro, IA, 2) != -1) getPosicao(tabuleiro, IA, 2);
     /* 6º caso
         - Estado: As condições acima não foram atendidas
         - Ação: IA adiciona marcador em posição aleatória 
     */
-    else {
-        return rand() % 7;
-    }
+    else return rand() % 7;
 }
