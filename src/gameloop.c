@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<stdbool.h>
 #include "./jogo/jogo.h"
 
 void showTabuleiro(char **tabuleiro) {
@@ -12,36 +13,51 @@ void showTabuleiro(char **tabuleiro) {
 }
 
 void showPlacar(){
-    //printf("PLACAR");
+    printf("PLACAR\n");
+}
+
+int lerColunaJogador(){
+    int coluna;
+    bool invalida;
+    do{
+        printf("Coluna > ");
+        scanf("%i",&coluna);
+        if(coluna < 1 || coluna >7){
+            invalida = true;
+        }else if(verificaColunaCompleta(coluna)){
+            invalida = true;
+        }else{
+            invalida = false;
+        }
+    }while(invalida);
+    return coluna;
 }
 
 void gameloop(){
-    int status = 1;
-    int ganhador = -1;
+    int ganhador = 0;
+    int coluna,linha;
     inicializarTabuleiro();
-    inicializaJogadores('A','B');
-    while (status) {
+    inicializaJogadores('X','O');
+    while (true) {
         showPlacar();
         showTabuleiro(getTabuleiro());
-        int linha = marcaJogada(1, 3);
-        if(verificaGanhador(linha,3)){
-            status = 0;
-            ganhador = 0;
-            break;
-        }
-        showTabuleiro(getTabuleiro());
-        linha = marcaJogada(2, 4);
-        if(verificaGanhador(linha,4)){
-            status = 0;
+        coluna = lerColunaJogador();
+        linha = marcaJogada(1,coluna);
+        if(verificaGanhador(linha,coluna)){
             ganhador = 1;
             break;
         }
-        if(verificaCompleta()){
-            status = 0;
+        showPlacar();
+        showTabuleiro(getTabuleiro());
+        coluna = lerColunaJogador();
+        linha = marcaJogada(2,coluna);
+        if(verificaGanhador(linha,coluna)){
+            ganhador = 2;
+            break;
         }
-        printf("\n------------------------------------------------\n");
+        if(verificaCompleta()) break;
     }
-    if(ganhador == -1) printf("empate");
-    else if(ganhador == 0) printf("jogador 01");
-    else printf("jogador 02");
+    if(ganhador == 0) printf("-------> empate <-------");
+    else if(ganhador == 1) printf("-------> jogador 01 <-------");
+    else if(ganhador == 2) printf("-------> jogador 02 <-------");
 }
