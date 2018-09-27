@@ -3,6 +3,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include "jogo.h"
+#include "../render/render.h"
 
 void showTabuleiro(char **tabuleiro) {
     int i,j;
@@ -43,6 +44,8 @@ int lerColunaJogador(){
 }
 
 int gameloop(){
+    int jogador = 0;
+    int ia = 0;
     int ganhador = 0;
     int coluna,linha;
     int status = -1;
@@ -51,30 +54,38 @@ int gameloop(){
     inicializaJogadores('X','O');
 
     while (status) {
-        showPlacar();
-        showTabuleiro(getTabuleiro());
+        //showPlacar();
+        exibirPlacar(jogador, ia);
+        //showTabuleiro(getTabuleiro());
+        exibirTabuleiro(getTabuleiro());
         coluna = lerColunaJogador();
         linha = marcaJogada(1,coluna);
         
         if(verificaGanhador(linha,coluna)){
             ganhador = 1;
+            jogador ++;
             status = 0;
             
         } else if(verificaCompleta()) status = 0;
         else {
 
-            showPlacar();
-            showTabuleiro(getTabuleiro());
+            //showPlacar();
+            exibirPlacar(jogador, ia);
+            //showTabuleiro(getTabuleiro());
+            exibirTabuleiro(getTabuleiro());
             coluna = lerColunaJogador();
             linha = marcaJogada(2,coluna);
             
             if(verificaGanhador(linha,coluna)){
                 ganhador = 2;
+                ia ++;
                 status = 0;
             }
         }
-        showPlacar();
-        showTabuleiro(getTabuleiro());
+        //showPlacar();
+        exibirPlacar(jogador, ia);
+        //showTabuleiro(getTabuleiro());
+        exibirTabuleiro(getTabuleiro());
     }
 
     return ganhador;
