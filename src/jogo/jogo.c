@@ -5,7 +5,7 @@
 #include "jogo.h"
 
 char **tabuleiro;
-int colunas[LINES];
+int colunas[COLUMNS];
 char jogadores[2];
 
 void inicializarTabuleiro() {
@@ -31,22 +31,26 @@ char **getTabuleiro() {
     return tabuleiro;
 }
 
-bool verificaCompleta() {
-    int i,j;
-    for(i = 0; i < LINES; i++) {
-        for(j = 0; j < COLUMNS; j++) {
-            if(tabuleiro[i][j] != '*') {
-                return true;
-            }
-        }
+bool verificaColunaCompleta(int coluna){
+    if(colunas[coluna-1] == COLUMNS - 1) {
+        return true;
     }
     return false;
 }
 
-int marcaJogada(int jogador, int coluna) {
-    if(colunas[coluna-1] == COLUMNS) {
-        return -1;
+bool verificaCompleta() {
+    int i,j;
+    for(i = 0; i < LINES; i++) {
+        for(j = 0; j < COLUMNS; j++) {
+            if(tabuleiro[i][j] == '*') {
+                return false;
+            }
+        }
     }
+    return true;
+}
+
+int marcaJogada(int jogador, int coluna) {
     int line = LINES - colunas[coluna-1] - 1;
     colunas[coluna-1]++;
     tabuleiro[line][coluna-1] = jogadores[jogador - 1];
@@ -125,7 +129,7 @@ bool checkDiagonalSecundaria(int linha, int coluna) {
     else return false;
 }
 
-bool varificaGanhador(int linha, int coluna) {
+bool verificaGanhador(int linha, int coluna) {
     return checkHorizontal(linha,coluna) || 
 		   checkVertical(linha,coluna) || 
 		   checkDiagonalPrincipal(linha,coluna) || 
