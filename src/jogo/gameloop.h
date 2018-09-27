@@ -8,5 +8,6 @@ int gameloop();
 
 int lerRepeatRespostaJogador();
 
+char *getUserNink();
 
 #endif

@@ -17,8 +17,7 @@ void interface_game_loop(void) {
         if (ganhador == 1) {
             jogador ++;
             printf("\n\tVOCÊ VENCEU !!!!\n");
-        }
-        else if (ganhador == 2) {
+        } else if (ganhador == 2) {
             ia ++;
             printf("\n\tVOCÊ PERDEU :( .....\n");
         } else {
