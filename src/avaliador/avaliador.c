@@ -46,8 +46,8 @@ int verticalLine(int tabuleiro[numOfLines][numOfColums]){
 int horizontalLine(int tabuleiro[numOfLines][numOfColums]){
 	int lastFour[4];
 
-	for(int i = 0; i < numOfColums; i++){
-		for(int j = 0; j < numOfLines; j++){
+	for(int i = 0; i < numOfLines; i++){
+		for(int j = 0; j < numOfColums; j++){
 			addToLastFour(lastFour, tabuleiro[i][j]);
 			if( fourInLine(lastFour) > 0 ){
 				return fourInLine(lastFour);
@@ -62,10 +62,10 @@ int horizontalLine(int tabuleiro[numOfLines][numOfColums]){
 int mainDiagonalLine(int tabuleiro[numOfLines][numOfColums]){
 	int lastFour[4];
 
-	int outsidex;
-	int outsidey;
-	int insidex;
-	int insidey;
+	int outsidex = 0;
+	int outsidey = 0;
+	int insidex = 0;
+	int insidey = 0;
 
 	while(!((numOfColums - outsidey) < 4)){
 		outsidex = 0;
@@ -110,10 +110,10 @@ int mainDiagonalLine(int tabuleiro[numOfLines][numOfColums]){
 int secondDiagonalLine(int tabuleiro[numOfLines][numOfColums]){
 	int lastFour[4];
 
-	int outsidex;
+	int outsidex = 0;
 	int outsidey = 6;
-	int insidex;
-	int insidey;
+	int insidex = 0;
+	int insidey = 0;
 
 	while(!(outsidey < 3)){
 		outsidex = 0;
@@ -156,12 +156,15 @@ int secondDiagonalLine(int tabuleiro[numOfLines][numOfColums]){
 }
 
 int empate(int tabuleiro[numOfLines][numOfColums]){
+	int sentinel = 0;
+
 	for(int i; i < numOfLines; i++){
 		for(int j; j < numOfColums; j++){
-			if(tabuleiro[i][j] < 1) return 0;
+			if(tabuleiro[i][j] >= 1) sentinel += 1;
 		}
 	}
-	return 3;
+	if(sentinel == 42) return 3;
+	else return 0;
 }
 
 int avaliar(int tabuleiro[numOfLines][numOfColums]){
@@ -229,13 +232,33 @@ int main(){
 		{0, 0, 0, 0, 0, 0, 0}
 	};
 
+	int tabuleiro6[6][7] = {
+		{0, 2, 0, 0, 0, 0, 0},
+		{0, 0, 2, 1, 0, 0, 0},
+		{0, 1, 0, 1, 1, 0, 0},
+		{0, 0, 1, 0, 2, 1, 0},
+		{0, 0, 0, 1, 0, 0, 0},
+		{0, 0, 0, 0, 1, 0, 0}
+	};
+
+	int tabuleiro7[6][7] = {
+		{1, 2, 1, 2, 1, 2, 1},
+		{2, 1, 2, 1, 2, 1, 2},
+		{1, 2, 1, 2, 1, 2, 1},
+		{1, 2, 1, 2, 1, 2, 1},
+		{2, 2, 2, 1, 2, 2, 2},
+		{1, 1, 1, 2, 1, 1, 1}
+	};
+
 
 	printf("quem ganhou no tabuleiro1: %d\n", avaliar(tabuleiro1));
 	printf("quem ganhou no tabuleiro2: %d\n", avaliar(tabuleiro2));
 	printf("quem ganhou no tabuleiro3: %d\n", avaliar(tabuleiro3));
 	printf("quem ganhou no tabuleiro4: %d\n", avaliar(tabuleiro4));
 	printf("quem ganhou no tabuleiro5: %d\n", avaliar(tabuleiro5));
+	printf("quem ganhou no tabuleiro7: %d\n", avaliar(tabuleiro7));
 	printf("tabuleiro 4 esta: %d\n", mainDiagonalLine(tabuleiro4));
+	printf("tabuleiro 6 esta: %d\n", mainDiagonalLine(tabuleiro6));
 	printf("tabuleiro 5 esta: %d\n", secondDiagonalLine(tabuleiro5));
 }
 /*
