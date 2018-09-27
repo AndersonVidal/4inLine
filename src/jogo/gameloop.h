@@ -6,4 +6,7 @@
 */
 int gameloop();
 
+int lerRepeatRespostaJogador();
+
+
 #endif

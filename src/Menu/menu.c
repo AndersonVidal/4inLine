@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 #include "menu.h"
-#include "../jogo/gameloop.h"
+#include "../jogo/interfaceGame.h"
 
 void showArchive(char type) {
     char ch, t[1000];
@@ -45,18 +45,9 @@ int computeMenuLine(char *line){
     return res; 
 }
 
-int startGameRotine(){
-    return gameloop();
-}
-
 void executeStatusOperation(int status) {
     int ganhador = -1;
-    if (status == 1) {
-        ganhador = startGameRotine();
-        if(ganhador == 0) printf("-------> empate <-------\n");
-        else if(ganhador == 1) printf("-------> jogador 01 <-------\n");
-        else if(ganhador == 2) printf("-------> jogador 02 <-------\n");
-    }
+    if (status == 1) interface_game_loop();
     else if (status == 2) showArchive('R');
     else if (status == 3) showArchive('B');
     else if (status == 0) showArchive('E'); 

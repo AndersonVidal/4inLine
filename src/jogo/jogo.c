@@ -93,7 +93,7 @@ bool checkDiagonalPrincipal(int linha, int coluna) {
     int cont = 1;
     int idxLinha = linha-1;
     int idxColuna = coluna-2;
-    while(idxLinha >= 0 && idxColuna > 0 && tabuleiro[idxLinha][idxColuna]==tabuleiro[linha][coluna-1]) {
+    while(idxLinha >= 0 && idxColuna >= 0 && tabuleiro[idxLinha][idxColuna]==tabuleiro[linha][coluna-1]) {
         idxLinha--;
         idxColuna--;
         cont++;
