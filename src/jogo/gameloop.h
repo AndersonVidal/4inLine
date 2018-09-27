@@ -4,6 +4,6 @@
 /*
     Metodo de execução do loop principal
 */
-void gameloop();
+int gameloop();
 
 #endif
