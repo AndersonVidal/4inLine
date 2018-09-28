@@ -54,8 +54,6 @@ int lerRepeatRespostaJogador() {
 }
 
 int gameloop(){
-    //int jogador = 0;
-    //int ia = 0;
     int ganhador = 0;
     int coluna,linha;
     int status = -1;
@@ -64,31 +62,25 @@ int gameloop(){
     inicializaJogadores('X','O');
 
     while (status) {
-        //exibirPlacar(jogador, ia);
         exibirTabuleiro(getTabuleiro());
         coluna = lerColunaJogador();
         linha = marcaJogada(1,coluna);
         
         if(verificaGanhador(linha,coluna)){
             ganhador = 1;
-            //jogador ++;
             status = 0;
             
         } else if(verificaCompleta()) status = 0;
         else {
-            //exibirPlacar(jogador, ia);
             exibirTabuleiro(getTabuleiro());
             coluna = lerColunaJogador();
             linha = marcaJogada(2,coluna);
             
             if(verificaGanhador(linha,coluna)){
                 ganhador = 2;
-                //ia ++;
                 status = 0;
             }
         }
-        //exibirPlacar(jogador, ia);
-        exibirTabuleiro(getTabuleiro());
     }
 
     return ganhador;
