@@ -144,7 +144,7 @@ int getPosicao(char **tabuleiro, int jogador, int tamanho) {
 }
 
 int getPosicaoDaJogadaIA(char **tabuleiro) {
-    srand((unsigned)time(NULL));
+    srand((unsigned)true);
     /* 1º caso
         - Estado: IA com 3 marcadores em sequência
         - Ação: IA completa a sequência formando 4 
