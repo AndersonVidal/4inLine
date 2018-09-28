@@ -185,6 +185,6 @@ int getPosicaoDaJogadaIA(char **tabuleiro) {
         - Ação: IA adiciona marcador em posição aleatória 
     */
     else {
-        return rand() % 7;
+        return rand() % 7 + 1;
     }
 }
