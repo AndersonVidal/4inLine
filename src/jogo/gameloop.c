@@ -4,16 +4,8 @@
 #include <unistd.h>
 #include "jogo.h"
 #include "../render/render.h"
+#include "../ia/ia.h"
 
-void showTabuleiro(char **tabuleiro) {
-    int i,j;
-    for(i = 0; i < LINES; i++) {
-        for(j = 0; j < COLUMNS; j++) {
-            printf("%c",tabuleiro[i][j]);
-        }
-        printf("\n");
-    }
-}
 
 int lerColunaJogador(){
     int coluna;
@@ -72,9 +64,9 @@ int gameloop(){
             
         } else if(verificaCompleta()) status = 0;
         else {
-            exibirTabuleiro(getTabuleiro());
-            coluna = lerColunaJogador();
+            coluna = getPosicaoDaJogadaIA(getTabuleiro());
             linha = marcaJogada(2,coluna);
+            printf("\nO PC jogou na posição %d\n", coluna);
             
             if(verificaGanhador(linha,coluna)){
                 ganhador = 2;

@@ -1,8 +1,8 @@
 #ifndef _H_RENDER
 #define _H_RENDER
-#define VAZIO 0
-#define JOGADOR 1
-#define IA 2
+#define VAZIO '*'
+#define JOGADOR 'X'
+#define IA 'O'
 #define LINHAS 6
 #define COLUNAS 7
 #define AMARELO "\033[0;33m"
