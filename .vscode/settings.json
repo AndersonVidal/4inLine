@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "stdlib.h": "c",
+        "interface.h": "c"
+        "cstdlib": "c",
+        "type_traits": "c",
+        "stdlib.h": "c",
+        "exception": "c"
+    }
+}
