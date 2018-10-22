@@ -18,18 +18,21 @@ percorre lista player qtd (x:xs)
   | verificador (slice lista x (x+qtd)) player qtd == -1 = percorre lista player qtd xs
   | otherwise = (verificador (slice lista x (x+qtd)) player qtd) + x
 
+transpostaMtx :: [[Int]] -> [[Int]]
+transpostaMtx ([]:_) = []
+transpostaMtx m = (map head m) : transpostaMtx (map tail m)
+
+implBuscaVertical :: [[Int]] -> Int -> Int -> Int
+implBuscaVertical [] player qtd = -1
+implBuscaVertical matriz player qtd
+  | percorre (head matriz) player qtd [0..(5-qtd)] /= -1 = 7 - (length matriz)
+  | otherwise = implBuscaVertical (tail matriz) player qtd
+
+buscaVertical :: [[Int]] -> Int -> Int -> Int
+buscaVertical matriz player qtd = implBuscaVertical (transpostaMtx matriz) player qtd
+
 buscaHorizontal :: [[Int]] -> Int -> Int -> Int
 buscaHorizontal [] player qtd = -1
 buscaHorizontal matriz player qtd
-  | percorre (head matriz) player qtd [0..(7-qtd)] == -1 = buscaHorizontal (tail matriz) player qtd
+  | percorre (head matriz) player qtd [0..(6-qtd)] == -1 = buscaHorizontal (tail matriz) player qtd
   | otherwise = percorre (head matriz) player qtd [0..(6-qtd)]
-
-
-main :: IO ()
-main =  do
-  let tabuleiro = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[1,1,1,1,1,1,1]]
-  let player = 1
-  let qtd = 3
-  
-  print(buscaHorizontal tabuleiro player qtd)
-
