@@ -1,38 +1,32 @@
-import System.IO  
-import Control.Monad
-
 
 menu entrada | (entrada == 'B') = do
-                let x = readFile "../files/About.txt"
-                let t = show x
-                return(t)
+                    x <- readFile "../files/About.txt"
+                    putStrLn x
              | (entrada == 'R') = do
-                let x = readFile "../files/Rules.txt"
-                let t = show x
-                return(t)
+                x <- readFile "../files/Rules.txt"
+                putStrLn x
              | (entrada == 'A') = do 
-                let x = readFile "../files/Apresentation.txt"
-                let t = show x
-                return(t)
+                x <- readFile "../files/Apresentaion.txt"
+                putStrLn x
              | (entrada == 'E') = do 
-                let x = readFile "../files/Goodby.txt"
-                let t = show x
-                return(t)
+                x <- readFile "../files/Goodbye.txt"
+                putStrLn x
              | (entrada == 'M') = do 
-                let x = readFile "../files/Menu.txt"
-                let t = show x
-                return(t)
+                x <- readFile "../files/Menu.txt"
+                putStrLn x
              | otherwise = do
-                let t = "Opção invalida!!!"
-                return(t)
+                putStrLn "Opção invalida!!!"
 
-compute_entrada entrada | (entrada == '1') = menu 'B'
-                        | (entrada == '2') = menu 'R'
-                        | (entrada == '3') = menu 'A'
-                        | (entrada == '4') = menu 'E'
-                        | otherwise = menu '0'
+compute_entrada entrada | (entrada == '1') = do 
+                            menu 'B'
+                        | (entrada == '2') = do 
+                            menu 'R'
+                        | (entrada == '3') = do 
+                            menu 'E'
+                        | otherwise = do 
+                            menu '0'
 
 main :: IO()
 main = do
     entrada <- getChar
-    putStrLn (compute_entrada entrada)
+    compute_entrada entrada
