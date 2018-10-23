@@ -36,3 +36,19 @@ buscaHorizontal [] player qtd = -1
 buscaHorizontal matriz player qtd
   | percorre (head matriz) player qtd [0..(6-qtd)] == -1 = buscaHorizontal (tail matriz) player qtd
   | otherwise = percorre (head matriz) player qtd [0..(6-qtd)]
+
+escolheJogada :: [[Int]] -> Int -> Int -> Int
+escolheJogada matriz player qtd
+  | buscaHorizontal matriz player qtd /= -1 = buscaHorizontal matriz player qtd
+  | buscaVertical matriz player qtd /= -1 = buscaVertical matriz player qtd
+  | otherwise = -1
+
+getJogada :: [[Int]] -> Int
+getJogada matriz
+  | escolheJogada matriz 2 3 /= -1 = escolheJogada matriz 2 3
+  | escolheJogada matriz 1 3 /= -1 = escolheJogada matriz 1 3
+  | escolheJogada matriz 1 2 /= -1 = escolheJogada matriz 1 2
+  | escolheJogada matriz 2 2 /= -1 = escolheJogada matriz 2 2
+  | escolheJogada matriz 2 1 /= -1 = escolheJogada matriz 2 1
+  | otherwise = 3
+
