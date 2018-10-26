@@ -18,6 +18,7 @@ menu entrada | (entrada == 'B') = do
                 putStrLn "Opção invalida!!!"
 
 compute_entrada entrada | (entrada == '1') = do 
+                            --jogo entra aqui
                             menu 'B'
                             main
                         | (entrada == '2') = do 
