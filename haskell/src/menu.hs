@@ -6,7 +6,7 @@ menu entrada | (entrada == 'B') = do
                 x <- readFile "../files/Rules.txt"
                 putStrLn x
              | (entrada == 'A') = do 
-                x <- readFile "../files/Apresentaion.txt"
+                x <- readFile "../files/Apresentation.txt"
                 putStrLn x
              | (entrada == 'E') = do 
                 x <- readFile "../files/Goodbye.txt"
@@ -19,14 +19,22 @@ menu entrada | (entrada == 'B') = do
 
 compute_entrada entrada | (entrada == '1') = do 
                             menu 'B'
+                            main
                         | (entrada == '2') = do 
                             menu 'R'
+                            main
                         | (entrada == '3') = do 
+                            menu 'B'
+                            main
+                        | (entrada == '4') = do
                             menu 'E'
                         | otherwise = do 
                             menu '0'
+                            main
 
 main :: IO()
 main = do
+    menu 'A'
+    menu 'M'
     entrada <- getChar
     compute_entrada entrada
