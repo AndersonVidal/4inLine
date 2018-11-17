@@ -1,28 +1,30 @@
 :- initialization(main).
 
-callFile(Opt):- Opt == 0 -> writeln("+---------------------------+
-|                           |
-|   [1] INICIAR JOGO        |
-|   [2] REGRAS E DICAS      |
-|   [3] SOBRE               |
-|   [4] SAIR                |
-|                           |
-+---------------------------+").
+menu(0).
+about(1).
+apresentation(2).
+rules(3).
+goodBye(4).
 
+callFile(Opt):- menu(Opt), ler_txt("../files/Menu.txt");
+                about(Opt), ler_txt("../files/About.txt");
+                apresentation(Opt), ler_txt("../files/Apresentation.txt");
+                rules(Opt), ler_txt("../files/Rules.txt");
+                goodBye(Opt), ler_txt("../files/Goodbye.txt").
 
-main:- callFile(0),
-       halt(0).
+ler_txt(Filename) :-  open(Filename,read,OS), 
+                      get_char(OS,C), 
+                      txt_to_list(C,L,OS), 
+                      close(OS),
+                      print(L).
 
-    % main :-
-    %     open('myFile.txt', read, Str),
-    %     read_file(Str,Lines),
-    %     close(Str),
-    %     write(Lines), nl.
-    
-    % read_file(Stream,[]) :-
-    %     at_end_of_stream(Stream).
-    
-    % read_file(Stream,[X|L]) :-
-    %     \+ at_end_of_stream(Stream),
-    %     read(Stream,X),
-    %     read_file(Stream,L).
+txt_to_list(_,[],OS)  :-  at_end_of_stream(OS).
+txt_to_list(C,[C|L],OS) :- get_char(OS,Q), txt_to_list(Q,L,OS).
+
+list_codes([Atom,Next|ListTail], Codes) :-
+    atom_codes(Atom, AtomCodes),
+    list_codes([Next|ListTail], ListTailCodes),
+    append(AtomCodes, ",", AtomCodesWithComma),
+    append(AtomCodesWithComma, ListTailCodes, Codes).
+
+main :- callFile(0). 
