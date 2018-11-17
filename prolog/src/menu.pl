@@ -12,7 +12,8 @@ callOption(Opt):- apresentation(Opt), ler_txt("../files/Apresentation.txt");
                   menu(Opt), ler_txt("../files/Menu.txt");
                   rules(Opt), ler_txt("../files/Rules.txt");
                   about(Opt), ler_txt("../files/About.txt");
-                  goodBye(Opt), ler_txt("../files/Goodbye.txt"), halt(0).
+                  goodBye(Opt), ler_txt("../files/Goodbye.txt"),halt(0);
+                  writeln("Opção invalida!").
 
 ler_txt(Filename) :-  open(Filename,read,OS), 
                       get_char(OS,C), 
