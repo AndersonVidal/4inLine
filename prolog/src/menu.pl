@@ -16,15 +16,13 @@ ler_txt(Filename) :-  open(Filename,read,OS),
                       get_char(OS,C), 
                       txt_to_list(C,L,OS), 
                       close(OS),
-                      print(L).
+                      escreve(L).
 
 txt_to_list(_,[],OS)  :-  at_end_of_stream(OS).
 txt_to_list(C,[C|L],OS) :- get_char(OS,Q), txt_to_list(Q,L,OS).
 
-list_codes([Atom,Next|ListTail], Codes) :-
-    atom_codes(Atom, AtomCodes),
-    list_codes([Next|ListTail], ListTailCodes),
-    append(AtomCodes, ",", AtomCodesWithComma),
-    append(AtomCodesWithComma, ListTailCodes, Codes).
+escreve([]).
+escreve([X|L1]):- write(X), escreve(L1).
 
-main :- callFile(0). 
+main :- callFile(0),
+        halt(0).
