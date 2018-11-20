@@ -2,7 +2,7 @@ exibeLinha([X|Y]) :-
     swritef(S, '|  %d  |  %d  |  %d  |  %d  |  %d  |  %d  |  %d  |', [X|Y]),
     writeln(S).
 
-exibeTabuleiro([]) :- .
+exibeTabuleiro([]).
 exibeTabuleiro([X|Y]) :- 
     exibeLinha(X),
     exibeTabuleiro(Y).

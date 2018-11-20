@@ -1,5 +1,5 @@
 % Conta a quantidade de ocorrências do elemento X na lista
-count([], X, 0).
+count([], _, 0).
 count([X|T], X, Y):- count(T, X, Z), Y is 1 + Z.
 count([X1|T], X, Z):- X1 \= X, count(T, X, Z).
 
@@ -19,7 +19,7 @@ checaHorizontal([L|Ls], Player, Count) :-
     Count is Count2;
     checaHorizontal(Ls, Player, Count).
 
-buscaHorizontal([], Player, Ganhou) :- Ganhou is false.
+buscaHorizontal([], Player, Ganhou) :- Ganhou = false.
 buscaHorizontal([T|Ts], Player, Ganhou) :-
     Qtd2 is 6-Qtd,
     checaHorizontal(T, Player, Qtd, Qtd2, Indexp),
