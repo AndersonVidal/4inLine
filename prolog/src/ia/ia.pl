@@ -83,14 +83,38 @@ buscaHorizontal([T|Ts], Player, Qtd, Index) :-
     Index is Indexp;
     buscaHorizontal(Ts, Player, Qtd, Index).
     
+escolheJogada([T|Ts], Player, Qtd, Index) :-
+    buscaHorizontal([T|Ts], Player, Qtd, Indexr),
+    Indexr \= -1,
+    Index is Indexr;
+    buscaVertical([T|Ts], Player, Qtd, Indexr),
+    Index is Indexr.
 
-main:-
-    buscaVertical([
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [1,0,0,0,0,0,0],
-    [1,0,0,0,1,0,0],
-    [1,1,1,1,1,1,1]
-    ], 1, 3, Index),
-    writeln(Index).
+getJogada(Tabuleiro, Posicao):-
+    escolheJogada(Tabuleiro, 2, 3, Index),
+    Index \= -1,
+    Posicao is Index;
+    escolheJogada(Tabuleiro, 1, 3, Index),
+    Index \= -1,
+    Posicao is Index;
+    escolheJogada(Tabuleiro, 1, 2, Index),
+    Index \= -1,
+    Posicao is Index;
+    escolheJogada(Tabuleiro, 2, 2, Index),
+    Index \= -1,
+    Posicao is Index;
+    escolheJogada(Tabuleiro, 2, 1, Index),
+    Index \= -1,
+    Posicao is Index;
+    Posicao is -1.
+
+%main:-
+%    getJogada([
+%    [0,0,0,0,0,0,0],
+%    [0,0,0,0,0,0,0],
+%    [0,0,0,0,0,0,0],
+%    [0,0,0,0,0,0,0],
+%    [0,1,0,0,1,0,0],
+%    [0,1,1,0,2,2,0]
+%    ], Index),
+%    writeln(Index).
