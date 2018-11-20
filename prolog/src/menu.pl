@@ -1,4 +1,6 @@
 :- initialization(main).
+?- consult(exibeTabuleiro.pl).
+ 
 
 apresentation(0).
 game(1).

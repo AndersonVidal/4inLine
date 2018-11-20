@@ -24,6 +24,8 @@ board([
     [6, a, 0], [6, b, 0], [6, c, 0], [6, d, 0], [6, e, 0], [6, f, 0], [6, g, 0]
     ]).
 
+getBoard(X):- X = board.
+
 player(1).
 player(-1).
 player(0).
